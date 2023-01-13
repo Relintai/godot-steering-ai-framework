@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": @"GDScript",
 "path": "res://Demos/DemoPickerUI.gd"
 }, {
-"base": "Reference",
-"class": @"GSAIAgentLocation",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAIAgentLocation.gd"
-}, {
 "base": "GSAISteeringBehavior",
 "class": @"GSAIArrive",
 "language": @"GDScript",
@@ -59,11 +54,6 @@ _global_script_classes=[ {
 "language": @"GDScript",
 "path": "res://addons/com.gdquest.godot-steering-ai-framework/Behaviors/GSAIFollowPath.gd"
 }, {
-"base": "GSAISteeringBehavior",
-"class": @"GSAIGroupBehavior",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAIGroupBehavior.gd"
-}, {
 "base": "GSAIProximity",
 "class": @"GSAIInfiniteProximity",
 "language": @"GDScript",
@@ -89,20 +79,10 @@ _global_script_classes=[ {
 "language": @"GDScript",
 "path": "res://addons/com.gdquest.godot-steering-ai-framework/Behaviors/GSAIMatchOrientation.gd"
 }, {
-"base": "Reference",
-"class": @"GSAIPath",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAIPath.gd"
-}, {
 "base": "GSAISteeringBehavior",
 "class": @"GSAIPriority",
 "language": @"GDScript",
 "path": "res://addons/com.gdquest.godot-steering-ai-framework/Behaviors/GSAIPriority.gd"
-}, {
-"base": "Reference",
-"class": @"GSAIProximity",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Proximities/GSAIProximity.gd"
 }, {
 "base": "GSAISteeringBehavior",
 "class": @"GSAIPursue",
@@ -138,35 +118,12 @@ _global_script_classes=[ {
 "class": @"GSAISpecializedAgent",
 "language": @"GDScript",
 "path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAISpecializedAgent.gd"
-}, {
-"base": "GSAIAgentLocation",
-"class": @"GSAISteeringAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAISteeringAgent.gd"
-}, {
-"base": "Reference",
-"class": @"GSAISteeringBehavior",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAISteeringBehavior.gd"
-}, {
-"base": "Reference",
-"class": @"GSAITargetAcceleration",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAITargetAcceleration.gd"
-}, {
-"base": "Reference",
-"class": @"GSAIUtils",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/GSAIUtils.gd"
 } ]
 _global_script_class_icons={
 @"GSAISeparation": "",
 @"DemoPickerUI": "",
 @"GSAIBlend": "",
 @"GSAIEvade": "",
-@"GSAIGroupBehavior": "",
-@"GSAIPath": "",
-@"GSAIProximity": "",
 @"GSAIRadiusProximity": "",
 @"GSAIFlee": "",
 @"GSAIPursue": "",
@@ -180,15 +137,10 @@ _global_script_class_icons={
 @"GSAIArrive": "",
 @"GSAIKinematicBody3DAgent": "",
 @"GSAIMatchOrientation": "",
-@"GSAISteeringBehavior": "",
-@"GSAITargetAcceleration": "",
-@"GSAIUtils": "",
-@"GSAIAgentLocation": "",
 @"GSAICohesion": "",
 @"GSAIFollowPath": "",
 @"GSAIKinematicBody2DAgent": "",
 @"GSAISeek": "",
-@"GSAISteeringAgent": "",
 @"GSAIFace": ""
 }
 
@@ -207,6 +159,10 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/gdc_converter/plugin.cfg" )
 
 [input]
 
