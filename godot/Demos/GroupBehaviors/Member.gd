@@ -3,9 +3,9 @@ extends KinematicBody2D
 var separation: GSAISeparation
 var cohesion: GSAICohesion
 var proximity: GSAIRadiusProximity
-var agent := GSAIKinematicBody2DAgent.new(self)
-var blend := GSAIBlend.new(agent)
-var acceleration := GSAITargetAcceleration.new()
+var agent :GSAIKinematicBody2DAgent = null
+var blend : GSAIBlend = null
+var acceleration : GSAITargetAcceleration = null
 var draw_proximity := false
 
 var _color := Color.red
@@ -13,6 +13,14 @@ var _velocity := Vector2()
 
 onready var collision_shape := $CollisionShape2D
 
+func _init() -> void:
+	agent = GSAIKinematicBody2DAgent.new()
+	agent.body = self
+	
+	blend = GSAIBlend.new()
+	blend.agent = agent
+	
+	acceleration = GSAITargetAcceleration.new()
 
 func setup(
 	linear_speed_max: float,
@@ -29,10 +37,19 @@ func setup(
 	agent.linear_speed_max = linear_speed_max
 	agent.linear_drag_percentage = 0.1
 
-	proximity = GSAIRadiusProximity.new(agent, [], proximity_radius)
-	separation = GSAISeparation.new(agent, proximity)
+	proximity = GSAIRadiusProximity.new()
+	proximity.agent = agent
+	proximity.radius = proximity_radius
+
+	separation = GSAISeparation.new()
+	separation.agent = agent
+	separation.proximity = proximity
 	separation.decay_coefficient = separation_decay_coefficient
-	cohesion = GSAICohesion.new(agent, proximity)
+	
+	cohesion = GSAICohesion.new()
+	cohesion.agent = agent
+	cohesion.proximity = proximity
+	
 	blend.add(separation, separation_strength)
 	blend.add(cohesion, cohesion_strength)
 

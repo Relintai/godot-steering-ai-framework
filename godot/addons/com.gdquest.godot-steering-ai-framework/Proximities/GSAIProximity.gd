@@ -10,11 +10,6 @@ var agent : GSAISteeringAgent
 var agents : Array = Array()
 
 
-func _init(_agent: GSAISteeringAgent, _agents: Array) -> void:
-	self.agent = _agent
-	self.agents = _agents
-
-
 # Returns a number of neighbors based on a `callback` function.
 #
 # `_find_neighbors` calls `callback` for each agent in the `agents` array and

@@ -9,12 +9,18 @@ var _linear_drag_coefficient := 0.025
 var _angular_drag := 0.1
 var _direction_face := GSAIAgentLocation.new()
 
-onready var agent := GSAIKinematicBody2DAgent.new(self)
-onready var accel := GSAITargetAcceleration.new()
-onready var player_agent: GSAISteeringAgent = owner.find_node("Player", true, false).agent
+var agent : GSAIKinematicBody2DAgent= null
+var accel : GSAITargetAcceleration = null
+var player_agent : GSAISteeringAgent = null
 
 
 func _ready() -> void:
+	agent = GSAIKinematicBody2DAgent.new()
+	agent.body = self
+	
+	accel = GSAITargetAcceleration.new()
+	player_agent = owner.find_node("Player", true, false).agent
+	
 	agent.calculate_velocities = false
 	set_physics_process(false)
 
@@ -45,15 +51,24 @@ func _physics_process(delta: float) -> void:
 func setup(predict_time: float, linear_speed_max: float, linear_accel_max: float) -> void:
 	var behavior: GSAISteeringBehavior
 	if use_seek:
-		behavior = GSAISeek.new(agent, player_agent)
+		behavior = GSAISeek.new()
+		behavior.agent = agent
+		behavior.target = player_agent
 	else:
-		behavior = GSAIPursue.new(agent, player_agent, predict_time)
+		behavior = GSAIPursue.new()
+		behavior.agent = agent
+		behavior.target = player_agent
+		behavior.predict_time_max = predict_time
 
-	var orient_behavior := GSAIFace.new(agent, _direction_face)
+	var orient_behavior : GSAIFace = GSAIFace.new()
+	orient_behavior.agent = agent
+	orient_behavior.target = _direction_face
+	
 	orient_behavior.alignment_tolerance = deg2rad(5)
 	orient_behavior.deceleration_radius = deg2rad(30)
 
-	_blend = GSAIBlend.new(agent)
+	_blend = GSAIBlend.new()
+	_blend.agent = agent
 	_blend.add(behavior, 1)
 	_blend.add(orient_behavior, 1)
 

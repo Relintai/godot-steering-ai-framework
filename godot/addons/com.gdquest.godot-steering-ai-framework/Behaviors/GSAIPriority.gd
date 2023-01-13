@@ -7,14 +7,10 @@ extends GSAISteeringBehavior
 var _behaviors : Array = Array()
 
 # The index of the last behavior the container prioritized.
-var last_selected_index : int = 0
+var _last_selected_index : int = 0
 # If a behavior's acceleration is lower than this threshold, the container
 # considers it has an acceleration of zero.
 var zero_threshold : float = 0.0
-
-
-func _init(agent: GSAISteeringAgent, _zero_threshold : float = 0.001).(agent) -> void:
-	self.zero_threshold = _zero_threshold
 
 
 # Appends a steering behavior as a child of this container.
@@ -36,13 +32,13 @@ func get_behavior_at(index : int) -> GSAISteeringBehavior:
 func _calculate_steering(accel : GSAITargetAcceleration) -> void:
 	var threshold_squared : float = zero_threshold * zero_threshold
 
-	last_selected_index = -1
+	_last_selected_index = -1
 
 	var size : int = _behaviors.size()
 
 	if size > 0:
 		for i in range(size):
-			last_selected_index = i
+			_last_selected_index = i
 			var behavior: GSAISteeringBehavior = _behaviors[i]
 			behavior.calculate_steering(accel)
 

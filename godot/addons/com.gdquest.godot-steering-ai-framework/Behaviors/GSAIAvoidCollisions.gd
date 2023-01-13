@@ -12,10 +12,6 @@ var _first_relative_position : Vector3
 var _first_relative_velocity : Vector3
 
 
-func _init(agent: GSAISteeringAgent, proximity: GSAIProximity).(agent, proximity) -> void:
-	pass
-
-
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	_shortest_time = INF
 	_first_neighbor = null

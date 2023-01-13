@@ -8,13 +8,7 @@ extends GSAISteeringBehavior
 var target : GSAISteeringAgent
 # The maximum amount of time in the future the behavior predicts the target's
 # location.
-var predict_time_max : float = 0
-
-
-func _init(agent : GSAISteeringAgent, _target : GSAISteeringAgent, _predict_time_max : float = 1.0).(agent) -> void:
-	self.target = _target
-	self.predict_time_max = _predict_time_max
-
+var predict_time_max : float = 1.0
 
 func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
 	var target_position : Vector3 = target.position

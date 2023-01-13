@@ -15,7 +15,7 @@ var _nearest_point_on_segment : Vector3
 var _nearest_point_on_path : Vector3
 
 
-func _init(waypoints : Array, _is_open : bool = false) -> void:
+func initialize(waypoints : Array, _is_open : bool = false) -> void:
 	self.is_open = _is_open
 	create_path(waypoints)
 	_nearest_point_on_segment = waypoints[0]
@@ -115,7 +115,7 @@ func _calculate_point_segment_distance_squared(start: Vector3, end: Vector3, pos
 
 	return _nearest_point_on_segment.distance_squared_to(position)
 
-
+# not exposed helper struct
 class GSAISegment:
 	var begin: Vector3
 	var end: Vector3

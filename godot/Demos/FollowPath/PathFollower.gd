@@ -5,16 +5,24 @@ var _accel := GSAITargetAcceleration.new()
 var _valid := false
 var _drag := 0.1
 
-onready var agent := GSAIKinematicBody2DAgent.new(self)
-onready var path := GSAIPath.new(
-	[
-		Vector3(global_position.x, global_position.y, 0),
-		Vector3(global_position.x, global_position.y, 0)
-	],
-	true
-)
-onready var follow := GSAIFollowPath.new(agent, path, 0, 0)
+var agent := GSAIKinematicBody2DAgent.new()
+var path := GSAIPath.new()
+var follow := GSAIFollowPath.new()
 
+func _ready() -> void:
+	agent.body = self
+	
+	path.initialize(
+		[
+			Vector3(global_position.x, global_position.y, 0),
+			Vector3(global_position.x, global_position.y, 0)
+		],
+		true
+	)
+	
+	follow.agent = agent
+	follow.path = path
+	follow.agent = agent
 
 func setup(
 	path_offset: float,

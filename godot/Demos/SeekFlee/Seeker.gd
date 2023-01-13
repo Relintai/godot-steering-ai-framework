@@ -6,13 +6,26 @@ var start_speed: float
 var start_accel: float
 var use_seek := true
 
-onready var agent := GSAIKinematicBody2DAgent.new(self)
-onready var accel := GSAITargetAcceleration.new()
-onready var seek := GSAISeek.new(agent, player_agent)
-onready var flee := GSAIFlee.new(agent, player_agent)
+var agent : GSAIKinematicBody2DAgent = null
+var accel : GSAITargetAcceleration = null
+var seek : GSAISeek = null
+var flee : GSAIFlee = null
 
 
 func _ready() -> void:
+	agent = GSAIKinematicBody2DAgent.new()
+	agent.body = self
+	
+	accel = GSAITargetAcceleration.new()
+	
+	seek = GSAISeek.new()
+	seek.agent = agent
+	seek.target = player_agent
+	
+	flee = GSAIFlee.new()
+	flee.agent = agent
+	flee.target = player_agent
+	
 	agent.linear_acceleration_max = start_accel
 	agent.linear_speed_max = start_speed
 

@@ -19,11 +19,6 @@ var time_to_reach : float = 0.1
 var use_z : bool = false
 
 
-func _init(agent: GSAISteeringAgent, _target: GSAIAgentLocation, _use_z : bool = false).(agent) -> void:
-	self.use_z = _use_z
-	self.target = _target
-
-
 func _match_orientation(acceleration: GSAITargetAcceleration, desired_orientation: float) -> void:
 	var rotation : float = wrapf(desired_orientation - agent.orientation, -PI, PI)
 

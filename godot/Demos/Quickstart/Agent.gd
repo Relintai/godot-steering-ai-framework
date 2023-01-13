@@ -18,35 +18,54 @@ var linear_drag := 0.1
 var angular_drag := 0.1
 
 # Holds the linear and angular components calculated by our steering behaviors.
-var acceleration := GSAITargetAcceleration.new()
+var acceleration : GSAITargetAcceleration = null
 
 onready var current_health := health_max
 
 # GSAISteeringAgent holds our agent's position, orientation, maximum speed and acceleration.
-onready var agent := GSAISteeringAgent.new()
+var agent : GSAISteeringAgent = null
 
-onready var player: Node = get_tree().get_nodes_in_group("Player")[0]
+var player: Node = null
 # This assumes that our player class will keep its own agent updated.
-onready var player_agent: GSAISteeringAgent = player.agent
+var player_agent : GSAISteeringAgent = null
 
 # Proximities represent an area with which an agent can identify where neighbors in its relevant
 # group are. In our case, the group will feature the player, which will be used to avoid a
 # collision with them. We use a radius proximity so the player is only relevant inside 100 pixels.
-onready var proximity := GSAIRadiusProximity.new(agent, [player_agent], 100)
+var proximity : GSAIRadiusProximity = null
 
 # GSAIBlend combines behaviors together, calculating all of their acceleration together and adding
 # them together, multiplied by a strength. We will have one for fleeing, and one for pursuing,
 # toggling them depending on the agent's health. Since we want the agent to rotate AND move, then
 # we aim to blend them together.
-onready var flee_blend := GSAIBlend.new(agent)
-onready var pursue_blend := GSAIBlend.new(agent)
+var flee_blend : GSAIBlend = null
+var pursue_blend : GSAIBlend = null
 
 # GSAIPriority will be the main steering behavior we use. It holds sub-behaviors and will pick the
 # first one that returns non-zero acceleration, ignoring any afterwards.
-onready var priority := GSAIPriority.new(agent)
+var priority : GSAIPriority = null
 
 
 func _ready() -> void:
+	acceleration = GSAITargetAcceleration.new()
+	agent = GSAISteeringAgent.new()
+	player = get_tree().get_nodes_in_group("Player")[0]
+	player_agent = player.agent
+	
+	proximity = GSAIRadiusProximity.new()
+	proximity.agent = agent
+	proximity.agents = [ player_agent ]
+	proximity.radius = 100
+	
+	flee_blend = GSAIBlend.new()
+	flee_blend.agent = agent
+	
+	pursue_blend = GSAIBlend.new()
+	pursue_blend.agent = agent
+	
+	priority = GSAIPriority.new()
+	priority.agent = agent
+	
 	# ---------- Configuration for our agent ----------
 	agent.linear_speed_max = speed_max
 	agent.linear_acceleration_max = acceleration_max
@@ -58,20 +77,28 @@ func _ready() -> void:
 	# ---------- Configuration for our behaviors ----------
 	# Pursue will happen while the agent is in good health. It produces acceleration that takes
 	# the agent on an intercept course with the target, predicting its position in the future.
-	var pursue := GSAIPursue.new(agent, player_agent)
+	var pursue : GSAIPursue = GSAIPursue.new()
+	pursue.agent = agent
+	pursue.target = player_agent
 	pursue.predict_time_max = 1.5
 
 	# Flee will happen while the agent is in bad health, so will start disabled. It produces
 	# acceleration that takes the agent directly away from the target with no prediction.
-	var flee := GSAIFlee.new(agent, player_agent)
+	var flee : GSAIFlee = GSAIFlee.new()
+	flee.agent = agent
+	flee.target = player_agent
 
 	# AvoidCollision tries to keep the agent from running into any of the neighbors found in its
 	# proximity group. In our case, this will be the player, if they are close enough.
-	var avoid := GSAIAvoidCollisions.new(agent, proximity)
+	var avoid : GSAIAvoidCollisions = GSAIAvoidCollisions.new()
+	avoid.agent = agent
+	avoid.proximity = proximity
 
 	# Face turns the agent to keep looking towards its target. It will be enabled while the agent
 	# is not fleeing due to low health. It tries to arrive 'on alignment' with 0 remaining velocity.
-	var face := GSAIFace.new(agent, player_agent)
+	var face : GSAIFace = GSAIFace.new()
+	face.agent = agent
+	face.target = player_agent
 
 	# We use deg2rad because the math in the toolkit assumes radians.
 	# How close for the agent to be 'aligned', if not exact.
@@ -81,7 +108,8 @@ func _ready() -> void:
 
 	# LookWhereYouGo turns the agent to keep looking towards its direction of travel. It will only
 	# be enabled while the agent is at low health.
-	var look := GSAILookWhereYouGo.new(agent)
+	var look : GSAILookWhereYouGo = GSAILookWhereYouGo.new()
+	look.agent = agent
 	# How close for the agent to be 'aligned', if not exact
 	look.alignment_tolerance = deg2rad(5)
 	# When to start slowing down.

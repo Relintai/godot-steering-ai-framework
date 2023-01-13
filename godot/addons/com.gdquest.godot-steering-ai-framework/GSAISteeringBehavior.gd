@@ -14,11 +14,6 @@ var is_enabled : bool = true
 # The AI agent on which the steering behavior bases its calculations.
 var agent : GSAISteeringAgent
 
-
-func _init(_agent: GSAISteeringAgent) -> void:
-	agent = _agent
-
-
 # Sets the `acceleration` with the behavior's desired amount of acceleration.
 func calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	if is_enabled:

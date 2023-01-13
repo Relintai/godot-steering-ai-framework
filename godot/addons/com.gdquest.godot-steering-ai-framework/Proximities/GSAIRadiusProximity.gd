@@ -11,10 +11,8 @@ var _last_frame : int = 0
 var _scene_tree : SceneTree
 
 
-func _init(agent: GSAISteeringAgent, agents: Array, _radius: float).(agent, agents) -> void:
-	self.radius = _radius
+func _init() -> void:
 	_scene_tree = Engine.get_main_loop()
-
 
 # Returns a number of neighbors based on a `callback` function.
 #

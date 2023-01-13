@@ -14,10 +14,6 @@ var decay_coefficient : float = 1.0
 var _acceleration : GSAITargetAcceleration
 
 
-func _init(agent : GSAISteeringAgent, proximity : GSAIProximity).(agent, proximity) -> void:
-	pass
-
-
 func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
 	acceleration.set_zero()
 	self._acceleration = acceleration

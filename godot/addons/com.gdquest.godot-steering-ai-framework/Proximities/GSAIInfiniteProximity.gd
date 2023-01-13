@@ -5,10 +5,6 @@ extends GSAIProximity
 class_name GSAIInfiniteProximity
 
 
-func _init(agent: GSAISteeringAgent, agents: Array).(agent, agents) -> void:
-	pass
-
-
 # Returns a number of neighbors based on a `callback` function.
 #
 # `_find_neighbors` calls `callback` for each agent in the `agents` array and

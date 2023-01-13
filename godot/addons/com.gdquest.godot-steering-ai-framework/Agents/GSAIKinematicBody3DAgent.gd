@@ -23,15 +23,6 @@ var _last_position : Vector3
 var _body_ref : WeakRef
 
 
-func _init(_body: KinematicBody, _movement_type: int = MovementType.SLIDE) -> void:
-	self.body = _body
-	self.movement_type = _movement_type
-
-	if !_body.is_inside_tree():
-		_body.connect("ready", self, "_body_ready")
-	else:
-		_body_ready()
-
 func _body_ready() -> void:
 	# warning-ignore:return_value_discarded
 	body.get_tree().connect("physics_frame", self, "_on_SceneTree_physics_frame")
@@ -115,6 +106,11 @@ func _apply_orientation_steering(angular_acceleration: float, delta: float) -> v
 
 
 func _set_body(value: KinematicBody) -> void:
+	var had_body : bool = false
+	
+	if body:
+		had_body = true
+		
 	body = value
 	_body_ref = weakref(value)
 
@@ -124,6 +120,11 @@ func _set_body(value: KinematicBody) -> void:
 	position = _last_position
 	orientation = _last_orientation
 
+	if !had_body:
+		if !body.is_inside_tree():
+			body.connect("ready", self, "_body_ready")
+		else:
+			_body_ready()
 
 func _on_SceneTree_physics_frame() -> void:
 	var _body : KinematicBody = _body_ref.get_ref()

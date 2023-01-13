@@ -12,13 +12,34 @@ var _drag := 0.1
 var _color := Color(0.4, 1.0, 0.89, 0.3)
 
 onready var collision := $CollisionShape2D
-onready var agent := GSAIKinematicBody2DAgent.new(self)
-onready var proximity := GSAIRadiusProximity.new(agent, [], 140)
-onready var avoid := GSAIAvoidCollisions.new(agent, proximity)
-onready var target := GSAIAgentLocation.new()
-onready var seek := GSAISeek.new(agent, target)
-onready var priority := GSAIPriority.new(agent, 0.0001)
+var agent :GSAIKinematicBody2DAgent= null
+var proximity :GSAIRadiusProximity= null
+var avoid :GSAIAvoidCollisions= null
+var target :GSAIAgentLocation= null
+var seek :GSAISeek= null
+var priority :GSAIPriority= null
 
+func _ready() -> void:
+	agent = GSAIKinematicBody2DAgent.new()
+	agent.body = self
+	
+	proximity = GSAIRadiusProximity.new()
+	proximity.agent = agent
+	proximity.radius = 140
+	
+	avoid = GSAIAvoidCollisions.new()
+	avoid.agent = agent
+	avoid.proximity = proximity
+	
+	target = GSAIAgentLocation.new()
+	
+	seek = GSAISeek.new()
+	seek.agent = agent
+	seek.target = target
+	
+	priority = GSAIPriority.new()
+	priority.agent = agent
+	priority.zero_threshold = 0.0001
 
 func _draw() -> void:
 	if draw_proximity:

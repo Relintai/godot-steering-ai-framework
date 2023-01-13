@@ -2,13 +2,30 @@ extends KinematicBody
 
 var target_node: Spatial
 
-onready var agent := GSAIKinematicBody3DAgent.new(self)
-onready var target := GSAIAgentLocation.new()
-onready var accel := GSAITargetAcceleration.new()
-onready var blend := GSAIBlend.new(agent)
-onready var face := GSAIFace.new(agent, target, true)
-onready var arrive := GSAIArrive.new(agent, target)
+var agent : GSAIKinematicBody3DAgent = null
+var target : GSAIAgentLocation = null
+var accel : GSAITargetAcceleration = null
+var blend : GSAIBlend = null
+var face : GSAIFace = null
+var arrive : GSAIArrive = null
 
+func _init() -> void:
+	agent = GSAIKinematicBody3DAgent.new()
+	agent.body = self
+	
+	target = GSAIAgentLocation.new()
+	accel = GSAITargetAcceleration.new()
+	blend = GSAIBlend.new()
+	blend.agent = agent
+	
+	face = GSAIFace.new()
+	face.agent = agent
+	face.target = target
+	face.use_z = true
+	
+	arrive = GSAIArrive.new()
+	arrive.agent = agent
+	arrive.target = target
 
 func _physics_process(delta: float) -> void:
 	target.position = target_node.transform.origin

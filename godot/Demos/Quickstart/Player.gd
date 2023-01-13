@@ -10,14 +10,21 @@ var velocity := Vector2.ZERO
 var angular_velocity := 0.0
 var direction := Vector2.RIGHT
 
-onready var agent := GSAISteeringAgent.new()
-onready var proxy_target := GSAIAgentLocation.new()
-onready var face := GSAIFace.new(agent, proxy_target)
+var agent : GSAISteeringAgent = null
+var proxy_target : GSAIAgentLocation = null
+var face : GSAIFace = null
+
 onready var accel := GSAITargetAcceleration.new()
 onready var bullets := owner.get_node("Bullets")
 
 
 func _ready() -> void:
+	agent = GSAISteeringAgent.new()
+	proxy_target = GSAIAgentLocation.new()
+	face = GSAIFace.new()
+	face.agent = agent
+	face.target = proxy_target
+	
 	agent.linear_speed_max = speed_max
 	agent.linear_acceleration_max = acceleration_max
 	agent.angular_speed_max = deg2rad(rotation_speed_max)

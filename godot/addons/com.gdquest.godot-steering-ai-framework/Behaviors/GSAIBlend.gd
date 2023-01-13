@@ -13,11 +13,6 @@ extends GSAISteeringBehavior
 var _behaviors : Array = Array()
 var _accel : GSAITargetAcceleration = GSAITargetAcceleration.new()
 
-
-func _init(agent : GSAISteeringAgent).(agent) -> void:
-	pass
-
-
 # Appends a behavior to the internal array along with its `weight`.
 func add(behavior : GSAISteeringBehavior, weight : float) -> void:
 	behavior.agent = agent

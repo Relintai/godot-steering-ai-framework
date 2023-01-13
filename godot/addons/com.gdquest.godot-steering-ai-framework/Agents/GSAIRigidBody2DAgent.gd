@@ -11,14 +11,6 @@ var _last_position : Vector2
 var _body_ref : WeakRef
 
 
-func _init(_body : RigidBody2D) -> void:
-	self.body = _body
-
-	if !_body.is_inside_tree():
-		_body.connect("ready", self, "_body_ready")
-	else:
-		_body_ready()
-
 func _body_ready() -> void:
 	# warning-ignore:return_value_discarded
 	body.get_tree().connect("physics_frame", self, "_on_SceneTree_frame")
@@ -40,6 +32,11 @@ func _apply_steering(acceleration : GSAITargetAcceleration, _delta : float) -> v
 
 
 func _set_body(value: RigidBody2D) -> void:
+	var had_body : bool = false
+	
+	if body:
+		had_body = true
+		
 	body = value
 	_body_ref = weakref(value)
 
@@ -48,6 +45,12 @@ func _set_body(value: RigidBody2D) -> void:
 
 	position = GSAIUtils.to_vector3(_last_position)
 	orientation = _last_orientation
+	
+	if !had_body:
+		if !body.is_inside_tree():
+			body.connect("ready", self, "_body_ready")
+		else:
+			_body_ready()
 
 
 func _on_SceneTree_frame() -> void:

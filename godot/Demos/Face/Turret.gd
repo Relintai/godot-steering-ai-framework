@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var face: GSAIFace
-var agent := GSAIKinematicBody2DAgent.new(self)
+var agent := GSAIKinematicBody2DAgent.new()
 
 var _accel := GSAITargetAcceleration.new()
 var _angular_drag := 0.1
@@ -12,6 +12,8 @@ onready var collision_shape := $CollisionShape2D
 
 
 func _ready() -> void:
+	agent.body = self
+	
 	var radius = collision_shape.shape.radius
 	_cannon = Rect2(Vector2(-5, 0), Vector2(10, -radius * 2))
 	_color = collision_shape.outer_color
@@ -33,7 +35,9 @@ func setup(
 	angular_accel_max: float,
 	angular_speed_max: float
 ) -> void:
-	face = GSAIFace.new(agent, player_agent)
+	face = GSAIFace.new()
+	face.agent = agent
+	face.target = player_agent
 
 	face.alignment_tolerance = align_tolerance
 	face.deceleration_radius = deceleration_radius
