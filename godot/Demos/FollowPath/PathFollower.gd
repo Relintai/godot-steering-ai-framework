@@ -19,7 +19,7 @@ func _ready() -> void:
 		],
 		true
 	)
-	
+
 	follow.agent = agent
 	follow.path = path
 	follow.agent = agent
@@ -50,8 +50,9 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_Drawer_path_established(points: Array) -> void:
-	var positions := PoolVector3Array()
+	var positions : PoolVector3Array = PoolVector3Array()
 	for p in points:
 		positions.append(Vector3(p.x, p.y, 0))
+
 	path.create_path(positions)
 	_valid = true
