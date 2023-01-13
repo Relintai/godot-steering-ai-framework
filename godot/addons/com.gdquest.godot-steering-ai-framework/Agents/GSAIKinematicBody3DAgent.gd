@@ -31,7 +31,7 @@ func _body_ready() -> void:
 # Moves the agent's `body` by target `acceleration`.
 # @tags - virtual
 func _apply_steering(acceleration: GSAITargetAcceleration, delta: float) -> void:
-	_applied_steering = true
+	applied_steering = true
 	if movement_type == MovementType.COLLIDE:
 			_apply_collide_steering(acceleration.linear, delta)
 	elif movement_type == MovementType.SLIDE:
@@ -115,10 +115,10 @@ func _set_body(value: KinematicBody) -> void:
 	_body_ref = weakref(value)
 
 	_last_position = value.transform.origin
-	_last_orientation = value.rotation.y
+	last_orientation = value.rotation.y
 
 	position = _last_position
-	orientation = _last_orientation
+	orientation = last_orientation
 
 	if !had_body:
 		if !body.is_inside_tree():
@@ -142,18 +142,18 @@ func _on_SceneTree_physics_frame() -> void:
 	orientation = current_orientation
 
 	if calculate_velocities:
-		if _applied_steering:
-			_applied_steering = false
+		if applied_steering:
+			applied_steering = false
 		else:
 			linear_velocity = GSAIUtils.clampedv3(current_position - _last_position, linear_speed_max)
 			
 			if apply_linear_drag:
 				linear_velocity = linear_velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
 
-			angular_velocity = clamp(_last_orientation - current_orientation,-angular_speed_max,angular_speed_max)
+			angular_velocity = clamp(last_orientation - current_orientation,-angular_speed_max,angular_speed_max)
 
 			if apply_angular_drag:
 				angular_velocity = lerp(angular_velocity, 0, angular_drag_percentage)
 
 			_last_position = current_position
-			_last_orientation = current_orientation
+			last_orientation = current_orientation

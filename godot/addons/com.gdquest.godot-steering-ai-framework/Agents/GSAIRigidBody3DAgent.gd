@@ -22,7 +22,7 @@ func _apply_steering(acceleration: GSAITargetAcceleration, _delta: float) -> voi
 	if !_body:
 		return
 		
-	_applied_steering = true
+	applied_steering = true
 	_body.apply_central_impulse(acceleration.linear)
 	_body.apply_torque_impulse(Vector3.UP * acceleration.angular)
 	if calculate_velocities:
@@ -40,10 +40,10 @@ func _set_body(value: RigidBody) -> void:
 	_body_ref = weakref(value)
 
 	_last_position = value.transform.origin
-	_last_orientation = value.rotation.y
+	last_orientation = value.rotation.y
 
 	position = _last_position
-	orientation = _last_orientation
+	orientation = last_orientation
 	
 	if !had_body:
 		if !body.is_inside_tree():
@@ -66,8 +66,8 @@ func _on_SceneTree_frame() -> void:
 	orientation = current_orientation
 
 	if calculate_velocities:
-		if _applied_steering:
-			_applied_steering = false
+		if applied_steering:
+			applied_steering = false
 		else:
 			linear_velocity = _body.linear_velocity
 			angular_velocity = _body.angular_velocity.y

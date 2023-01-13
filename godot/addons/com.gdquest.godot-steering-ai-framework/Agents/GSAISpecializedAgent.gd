@@ -29,8 +29,8 @@ var linear_drag_percentage : float = 0.0
 # Does not apply to `RigidBody` and `RigidBody2D` nodes.
 var angular_drag_percentage : float = 0.0
 
-var _last_orientation : float = 0.0
-var _applied_steering : bool = false
+var last_orientation : float = 0.0
+var applied_steering : bool = false
 
 func apply_steering(_acceleration : GSAITargetAcceleration, _delta : float) -> void:
 	call("_apply_steering", _acceleration, _delta)
