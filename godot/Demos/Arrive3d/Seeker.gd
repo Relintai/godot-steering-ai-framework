@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	target.position = target_node.transform.origin
 	target.position.y = transform.origin.y
 	blend.calculate_steering(accel)
-	agent._apply_steering(accel, delta)
+	agent.apply_steering(accel, delta)
 
 
 func setup(

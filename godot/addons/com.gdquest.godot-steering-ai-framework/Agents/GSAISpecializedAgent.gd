@@ -32,6 +32,8 @@ var angular_drag_percentage : float = 0.0
 var _last_orientation : float = 0.0
 var _applied_steering : bool = false
 
+func apply_steering(_acceleration : GSAITargetAcceleration, _delta : float) -> void:
+	call("_apply_steering", _acceleration, _delta)
 
 # Moves the agent's body by target `acceleration`.
 # @tags - virtual
