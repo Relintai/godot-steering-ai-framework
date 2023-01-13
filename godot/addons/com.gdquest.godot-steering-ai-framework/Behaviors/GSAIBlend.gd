@@ -1,3 +1,6 @@
+class_name GSAIBlend
+extends GSAISteeringBehavior
+
 # Blends multiple steering behaviors into one, and returns a weighted
 # acceleration from their calculations.
 #
@@ -7,8 +10,6 @@
 # 	weight : float
 # }
 # @category - Combination behaviors
-class_name GSAIBlend
-extends GSAISteeringBehavior
 
 var _behaviors : Array = Array()
 var _accel : GSAITargetAcceleration = GSAITargetAcceleration.new()

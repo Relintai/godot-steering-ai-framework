@@ -1,8 +1,9 @@
+extends Reference
+class_name GSAITargetAcceleration
+
 # A desired linear and angular amount of acceleration requested by the steering
 # system.
 # @category - Base types
-extends Reference
-class_name GSAITargetAcceleration
 
 # Linear acceleration
 var linear : Vector3 = Vector3.ZERO

@@ -1,9 +1,10 @@
+class_name GSAIMatchOrientation
+extends GSAISteeringBehavior
+
 # Calculates an angular acceleration to match an agent's orientation to that of
 # its target. Attempts to make the agent arrive with zero remaining angular
 # velocity.
 # @category - Individual behaviors
-class_name GSAIMatchOrientation
-extends GSAISteeringBehavior
 
 # The target orientation for the behavior to try and match rotations to.
 var target : GSAIAgentLocation

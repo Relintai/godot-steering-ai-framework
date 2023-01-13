@@ -1,8 +1,9 @@
+extends GSAISpecializedAgent
+class_name GSAIRigidBody2DAgent
+
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a RigidBody2D
 # @category - Specialized agents
-extends GSAISpecializedAgent
-class_name GSAIRigidBody2DAgent
 
 # The RigidBody2D to keep track of
 var body : RigidBody2D setget _set_body

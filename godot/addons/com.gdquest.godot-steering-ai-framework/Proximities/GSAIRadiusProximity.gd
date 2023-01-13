@@ -1,8 +1,9 @@
+extends GSAIProximity
+class_name GSAIRadiusProximity
+
 # Determines any agent that is in the specified list as being neighbors with the owner agent if
 # they lie within the specified radius.
 # @category - Proximities
-extends GSAIProximity
-class_name GSAIRadiusProximity
 
 # The radius around the owning agent to find neighbors in
 var radius : float = 0.0

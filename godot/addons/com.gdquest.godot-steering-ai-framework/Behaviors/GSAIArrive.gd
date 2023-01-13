@@ -1,8 +1,9 @@
+class_name GSAIArrive
+extends GSAISteeringBehavior
+
 # Calculates acceleration to take an agent to its target's location. The
 # calculation attempts to arrive with zero remaining velocity.
 # @category - Individual behaviors
-class_name GSAIArrive
-extends GSAISteeringBehavior
 
 # Target agent to arrive to.
 var target : GSAIAgentLocation

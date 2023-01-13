@@ -1,6 +1,7 @@
+class_name GSAIUtils
+
 # Math and vector utility functions.
 # @Category - Utilities
-class_name GSAIUtils
 
 # Returns the `vector` with its length capped to `limit`.
 static func clampedv3(vector: Vector3, limit: float) -> Vector3:

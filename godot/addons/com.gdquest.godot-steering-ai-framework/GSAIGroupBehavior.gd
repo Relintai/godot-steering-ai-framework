@@ -1,7 +1,8 @@
-# Base type for group-based steering behaviors.
-# @category - Base types
 class_name GSAIGroupBehavior
 extends GSAISteeringBehavior
+
+# Base type for group-based steering behaviors.
+# @category - Base types
 
 # Container to find neighbors of the agent and calculate group behavior.
 var proximity : GSAIProximity

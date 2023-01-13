@@ -1,7 +1,8 @@
-# Represents an agent with only a location and an orientation.
-# @category - Base types
 extends Reference
 class_name GSAIAgentLocation
+
+# Represents an agent with only a location and an orientation.
+# @category - Base types
 
 # The agent's position in space.
 var position : Vector3 = Vector3.ZERO

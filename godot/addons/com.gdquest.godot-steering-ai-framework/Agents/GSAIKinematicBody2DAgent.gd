@@ -1,8 +1,9 @@
+extends GSAISpecializedAgent
+class_name GSAIKinematicBody2DAgent
+
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a KinematicBody2D
 # @category - Specialized agents
-extends GSAISpecializedAgent
-class_name GSAIKinematicBody2DAgent
 
 # SLIDE uses `move_and_slide`
 # COLLIDE uses `move_and_collide`

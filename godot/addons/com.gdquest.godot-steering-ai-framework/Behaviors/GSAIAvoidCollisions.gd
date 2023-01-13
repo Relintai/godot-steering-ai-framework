@@ -1,8 +1,9 @@
+class_name GSAIAvoidCollisions
+extends GSAIGroupBehavior
+
 # Steers the agent to avoid obstacles in its path. Approximates obstacles as
 # spheres.
 # @category - Group behaviors
-class_name GSAIAvoidCollisions
-extends GSAIGroupBehavior
 
 var _first_neighbor: GSAISteeringAgent
 var _shortest_time : float = 0.0

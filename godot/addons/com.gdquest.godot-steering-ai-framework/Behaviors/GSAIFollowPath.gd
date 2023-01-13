@@ -1,7 +1,8 @@
-# Produces a linear acceleration that moves the agent along the specified path.
-# @category - Individual behaviors
 class_name GSAIFollowPath
 extends GSAIArrive
+
+# Produces a linear acceleration that moves the agent along the specified path.
+# @category - Individual behaviors
 
 # The path to follow and travel along.
 var path : GSAIPath

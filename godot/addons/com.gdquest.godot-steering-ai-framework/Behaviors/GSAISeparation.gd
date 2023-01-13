@@ -1,3 +1,6 @@
+class_name GSAISeparation
+extends GSAIGroupBehavior
+
 # Calculates an acceleration that repels the agent from its neighbors in the
 # given `GSAIProximity`.
 #
@@ -5,8 +8,6 @@
 # strength decreasing by the inverse square law in relation to distance, and it
 # accumulates.
 # @category - Group behaviors
-class_name GSAISeparation
-extends GSAIGroupBehavior
 
 # The coefficient to calculate how fast the separation strength decays with distance.
 var decay_coefficient : float = 1.0

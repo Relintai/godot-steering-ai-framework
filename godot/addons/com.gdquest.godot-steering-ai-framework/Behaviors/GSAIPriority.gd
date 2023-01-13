@@ -1,8 +1,9 @@
+class_name GSAIPriority
+extends GSAISteeringBehavior
+
 # Container for multiple behaviors that returns the result of the first child
 # behavior with non-zero acceleration.
 # @category - Combination behaviors
-class_name GSAIPriority
-extends GSAISteeringBehavior
 
 # If a behavior's acceleration is lower than this threshold, the container
 # considers it has an acceleration of zero.

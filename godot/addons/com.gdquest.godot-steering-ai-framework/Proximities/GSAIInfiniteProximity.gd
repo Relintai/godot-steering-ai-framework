@@ -1,9 +1,9 @@
-# Determines any agent that is in the specified list as being neighbors with the
-# owner agent, regardless of distance.
-# @category - Proximities
 extends GSAIProximity
 class_name GSAIInfiniteProximity
 
+# Determines any agent that is in the specified list as being neighbors with the
+# owner agent, regardless of distance.
+# @category - Proximities
 
 # Returns a number of neighbors based on a `callback` function.
 #

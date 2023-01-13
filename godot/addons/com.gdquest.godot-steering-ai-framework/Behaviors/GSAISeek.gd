@@ -1,8 +1,9 @@
+class_name GSAISeek
+extends GSAISteeringBehavior
+
 # Calculates an acceleration to take an agent to a target agent's position
 # directly.
 # @category - Individual behaviors
-class_name GSAISeek
-extends GSAISteeringBehavior
 
 # The target that the behavior aims to move the agent to.
 var target : GSAIAgentLocation

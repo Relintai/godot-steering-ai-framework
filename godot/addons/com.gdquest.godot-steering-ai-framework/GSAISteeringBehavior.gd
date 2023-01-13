@@ -1,3 +1,6 @@
+extends Reference
+class_name GSAISteeringBehavior
+
 # Base class for all steering behaviors.
 #
 # Steering behaviors calculate the linear and the angular acceleration to be
@@ -6,8 +9,6 @@
 # The `calculate_steering` function is the entry point for all behaviors.
 # Individual steering behaviors encapsulate the steering logic.
 # @category - Base types
-extends Reference
-class_name GSAISteeringBehavior
 
 # If `false`, all calculations return zero amounts of acceleration.
 var is_enabled : bool = true
