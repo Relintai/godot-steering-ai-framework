@@ -50,8 +50,8 @@ func setup(
 	cohesion.agent = agent
 	cohesion.proximity = proximity
 	
-	blend.add(separation, separation_strength)
-	blend.add(cohesion, cohesion_strength)
+	blend.add_behavior(separation, separation_strength)
+	blend.add_behavior(cohesion, cohesion_strength)
 
 
 func _draw() -> void:

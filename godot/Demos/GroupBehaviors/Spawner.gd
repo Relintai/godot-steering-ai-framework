@@ -84,9 +84,9 @@ func set_separation_decay_coef(value: float) -> void:
 
 func set_cohesion_strength(value: float) -> void:
 	for child in get_children():
-		child.blend.get_behavior_at(1).weight = value
+		child.blend.get_behavior(1).weight = value
 
 
 func set_separation_strength(value: float) -> void:
 	for child in get_children():
-		child.blend.get_behavior_at(0).weight = value
+		child.blend.get_behavior(0).weight = value

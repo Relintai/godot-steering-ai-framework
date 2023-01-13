@@ -11,11 +11,10 @@ class_name GSAIBlend
 extends GSAISteeringBehavior
 
 var _behaviors : Array = Array()
-#note only add a getter
 var _accel : GSAITargetAcceleration = GSAITargetAcceleration.new()
 
 # Appends a behavior to the internal array along with its `weight`.
-func add(behavior : GSAISteeringBehavior, weight : float) -> void:
+func add_behavior(behavior : GSAISteeringBehavior, weight : float) -> void:
 	behavior.agent = agent
 	
 	var dict : Dictionary = Dictionary()
@@ -25,10 +24,9 @@ func add(behavior : GSAISteeringBehavior, weight : float) -> void:
 	
 	_behaviors.append(dict)
 
-
 # Returns the behavior at the specified `index`, or an empty `Dictionary` if
 # none was found.
-func get_behavior_at(index : int) -> Dictionary:
+func get_behavior(index : int) -> Dictionary:
 	if _behaviors.size() > index:
 		return _behaviors[index]
 		
@@ -36,6 +34,21 @@ func get_behavior_at(index : int) -> Dictionary:
 	
 	return Dictionary()
 
+func remove_behavior(index : int) -> void:
+	if _behaviors.size() > index:
+		_behaviors.remove(index)
+		
+		return
+		
+	printerr("Tried to get index " + str(index) + " in array of size " + str(_behaviors.size()))
+	
+	return
+
+func get_behaviour_count() -> int:
+	return _behaviors.size()
+
+func get_accel() -> GSAITargetAcceleration:
+	return _accel
 
 func _calculate_steering(blended_accel: GSAITargetAcceleration) -> void:
 	blended_accel.set_zero()

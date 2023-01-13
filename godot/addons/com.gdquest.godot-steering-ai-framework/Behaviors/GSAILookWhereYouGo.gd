@@ -16,4 +16,4 @@ func _calculate_steering(accel: GSAITargetAcceleration) -> void:
 		else:
 			orientation = GSAIUtils.vector2_to_angle(GSAIUtils.to_vector2(agent.linear_velocity))
 
-		_match_orientation(accel, orientation)
+		match_orientation(accel, orientation)

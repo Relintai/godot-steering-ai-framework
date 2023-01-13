@@ -14,6 +14,8 @@ var deceleration_radius : float = 0.0
 # Represents the time it takes to change acceleration.
 var time_to_reach : float = 0.1
 
+func arrive(acceleration : GSAITargetAcceleration, target_position : Vector3) -> void:
+	call("_arrive", acceleration, target_position)
 
 func _arrive(acceleration : GSAITargetAcceleration, target_position : Vector3) -> void:
 	var to_target : Vector3 = target_position - agent.position
@@ -34,6 +36,5 @@ func _arrive(acceleration : GSAITargetAcceleration, target_position : Vector3) -
 		acceleration.linear = GSAIUtils.clampedv3(desired_velocity, agent.linear_acceleration_max)
 		acceleration.angular = 0
 
-
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
-	_arrive(acceleration, target.position)
+	arrive(acceleration, target.position)

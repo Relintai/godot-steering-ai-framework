@@ -23,10 +23,12 @@ func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
 			predict_time = sqrt(predict_time_squared)
 
 	acceleration.linear = ((target_position + (target.linear_velocity * predict_time)) - agent.position).normalized()
-	acceleration.linear *= _get_modified_acceleration()
+	acceleration.linear *= get_modified_acceleration()
 
 	acceleration.angular = 0
 
+func get_modified_acceleration() -> float:
+	return call("_get_modified_acceleration")
 
 func _get_modified_acceleration() -> float:
 	return agent.linear_acceleration_max

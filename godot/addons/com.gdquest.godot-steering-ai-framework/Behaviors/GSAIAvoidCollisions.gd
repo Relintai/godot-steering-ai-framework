@@ -11,7 +11,6 @@ var _first_distance : float = 0.0
 var _first_relative_position : Vector3
 var _first_relative_velocity : Vector3
 
-
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	_shortest_time = INF
 	_first_neighbor = null

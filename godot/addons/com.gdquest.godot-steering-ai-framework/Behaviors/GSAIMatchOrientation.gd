@@ -18,6 +18,8 @@ var time_to_reach : float = 0.1
 # determining angles. X and Z should be used in 3D.
 var use_z : bool = false
 
+func match_orientation(acceleration: GSAITargetAcceleration, desired_orientation: float) -> void:
+	call("_match_orientation", acceleration, desired_orientation)
 
 func _match_orientation(acceleration: GSAITargetAcceleration, desired_orientation: float) -> void:
 	var rotation : float = wrapf(desired_orientation - agent.orientation, -PI, PI)
@@ -44,4 +46,4 @@ func _match_orientation(acceleration: GSAITargetAcceleration, desired_orientatio
 
 
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
-	_match_orientation(acceleration, target.orientation)
+	match_orientation(acceleration, target.orientation)

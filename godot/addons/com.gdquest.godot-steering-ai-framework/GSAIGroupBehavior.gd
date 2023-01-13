@@ -8,6 +8,8 @@ var proximity : GSAIProximity
 
 var _callback : FuncRef = funcref(self, "_report_neighbor")
 
+func get_callback() -> FuncRef:
+	return _callback
 
 # Internal callback for the behavior to define whether or not a member is
 # relevant

@@ -35,11 +35,11 @@ func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	if is_arrive_enabled and path.is_open:
 		if path_offset >= 0:
 			if target_distance > path.length - deceleration_radius:
-				_arrive(acceleration, target_position)
+				arrive(acceleration, target_position)
 				return
 		else:
 			if target_distance < deceleration_radius:
-				_arrive(acceleration, target_position)
+				arrive(acceleration, target_position)
 				return
 
 	acceleration.linear = (target_position - agent.position).normalized()

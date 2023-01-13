@@ -15,8 +15,8 @@ var acceleration : GSAITargetAcceleration
 
 
 func _calculate_steering(_acceleration : GSAITargetAcceleration) -> void:
-	acceleration.set_zero()
 	self.acceleration = _acceleration
+	acceleration.set_zero()
 	# warning-ignore:return_value_discarded
 	proximity.find_neighbors(_callback)
 

@@ -118,19 +118,19 @@ func _ready() -> void:
 	# Behaviors that are not enabled produce 0 acceleration.
 	# Adding our fleeing behaviors to a blend. The order does not matter.
 	flee_blend.is_enabled = false
-	flee_blend.add(look, 1)
-	flee_blend.add(flee, 1)
+	flee_blend.add_behavior(look, 1)
+	flee_blend.add_behavior(flee, 1)
 
 	# Adding our pursuit behaviors to a blend. The order does not matter.
-	pursue_blend.add(face, 1)
-	pursue_blend.add(pursue, 1)
+	pursue_blend.add_behavior(face, 1)
+	pursue_blend.add_behavior(pursue, 1)
 
 	# Adding our final behaviors to the main priority behavior. The order does matter here.
 	# We want to avoid collision with the player first, flee from the player second when enabled,
 	# and pursue the player last when enabled.
-	priority.add(avoid)
-	priority.add(flee_blend)
-	priority.add(pursue_blend)
+	priority.add_behavior(avoid)
+	priority.add_behavior(flee_blend)
+	priority.add_behavior(pursue_blend)
 
 
 func _physics_process(delta: float) -> void:

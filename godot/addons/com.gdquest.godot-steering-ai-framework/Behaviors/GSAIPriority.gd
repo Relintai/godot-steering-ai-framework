@@ -14,13 +14,12 @@ var zero_threshold : float = 0.0
 
 
 # Appends a steering behavior as a child of this container.
-func add(behavior: GSAISteeringBehavior) -> void:
+func add_behavior(behavior: GSAISteeringBehavior) -> void:
 	_behaviors.append(behavior)
-
 
 # Returns the behavior at the position in the pool referred to by `index`, or
 # `null` if no behavior was found.
-func get_behavior_at(index : int) -> GSAISteeringBehavior:
+func get_behavior(index : int) -> GSAISteeringBehavior:
 	if _behaviors.size() > index:
 		return _behaviors[index]
 		
@@ -28,6 +27,19 @@ func get_behavior_at(index : int) -> GSAISteeringBehavior:
 	
 	return null
 
+func remove_behavior(index : int) -> void:
+	if _behaviors.size() > index:
+		_behaviors.remove(index)
+		
+		return
+		
+	printerr("Tried to get index " + str(index) + " in array of size " + str(_behaviors.size()))
+	
+	return
+
+func get_behaviour_count() -> int:
+	return _behaviors.size()
+	
 
 func _calculate_steering(accel : GSAITargetAcceleration) -> void:
 	var threshold_squared : float = zero_threshold * zero_threshold

@@ -4,6 +4,8 @@
 class_name GSAIFace
 extends GSAIMatchOrientation
 
+func face(acceleration: GSAITargetAcceleration, target_position: Vector3) -> void:
+	call("_face", acceleration, target_position)
 
 func _face(acceleration: GSAITargetAcceleration, target_position: Vector3) -> void:
 	var to_target : Vector3 = target_position - agent.position
@@ -19,8 +21,7 @@ func _face(acceleration: GSAITargetAcceleration, target_position: Vector3) -> vo
 		else:
 			orientation = GSAIUtils.vector2_to_angle(GSAIUtils.to_vector2(to_target))
 
-		_match_orientation(acceleration, orientation)
-
+		match_orientation(acceleration, orientation)
 
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
-	_face(acceleration, target.position)
+	face(acceleration, target.position)

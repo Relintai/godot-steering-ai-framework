@@ -69,8 +69,8 @@ func setup(predict_time: float, linear_speed_max: float, linear_accel_max: float
 
 	_blend = GSAIBlend.new()
 	_blend.agent = agent
-	_blend.add(behavior, 1)
-	_blend.add(orient_behavior, 1)
+	_blend.add_behavior(behavior, 1)
+	_blend.add_behavior(orient_behavior, 1)
 
 	agent.angular_acceleration_max = deg2rad(1080)
 	agent.angular_speed_max = deg2rad(360)

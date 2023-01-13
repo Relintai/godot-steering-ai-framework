@@ -60,5 +60,5 @@ func setup(
 
 	target_node = _target
 	self.target.position = target_node.transform.origin
-	blend.add(arrive, 1)
-	blend.add(face, 1)
+	blend.add_behavior(arrive, 1)
+	blend.add_behavior(face, 1)

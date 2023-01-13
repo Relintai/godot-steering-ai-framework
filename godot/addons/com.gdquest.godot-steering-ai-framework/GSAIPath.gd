@@ -58,7 +58,7 @@ func calculate_distance(agent_current_position : Vector3) -> float:
 	
 	for i in range(_segments.size()):
 		var segment: GSAISegment = _segments[i]
-		var distance_squared : float = _calculate_point_segment_distance_squared(segment.begin, segment.end, agent_current_position)
+		var distance_squared : float = calculate_point_segment_distance_squared(segment.begin, segment.end, agent_current_position)
 
 		if distance_squared < smallest_distance_squared:
 			_nearest_point_on_path = _nearest_point_on_segment
@@ -105,7 +105,7 @@ func get_end_point() -> Vector3:
 	return _segments.back().end
 
 
-func _calculate_point_segment_distance_squared(start: Vector3, end: Vector3, position: Vector3) -> float:
+func calculate_point_segment_distance_squared(start: Vector3, end: Vector3, position: Vector3) -> float:
 	_nearest_point_on_segment = start
 	var start_end : Vector3 = end - start
 	var start_end_length_squared : float = start_end.length_squared()

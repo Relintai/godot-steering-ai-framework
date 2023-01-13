@@ -80,8 +80,8 @@ func setup(
 
 	self.draw_proximity = _draw_proximity
 
-	priority.add(avoid)
-	priority.add(seek)
+	priority.add_behavior(avoid)
+	priority.add_behavior(seek)
 
 
 func set_proximity_agents(agents: Array) -> void:
