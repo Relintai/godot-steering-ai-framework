@@ -53,7 +53,7 @@ func _apply_sliding_steering(accel: Vector3, delta: float) -> void:
 	if !_body.is_inside_tree() or _body.get_tree().paused:
 		return
 		
-	var velocity : Vector2 = GSAIUtils.to_vector2(linear_velocity + accel * delta).clamped(linear_speed_max)
+	var velocity : Vector2 = GSAIUtils.to_vector2(linear_velocity + accel * delta).limit_length(linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector2.ZERO, linear_drag_percentage)

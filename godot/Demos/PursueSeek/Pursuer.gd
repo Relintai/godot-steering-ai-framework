@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		GSAIUtils.to_vector2(agent.linear_velocity)
 		+ (GSAIUtils.angle_to_vector2(rotation) * -agent.linear_acceleration_max * delta)
 	)
-	linear_velocity = linear_velocity.clamped(agent.linear_speed_max)
+	linear_velocity = linear_velocity.limit_length(agent.linear_speed_max)
 	linear_velocity = linear_velocity.linear_interpolate(Vector2.ZERO, _linear_drag_coefficient)
 
 	linear_velocity = move_and_slide(linear_velocity)

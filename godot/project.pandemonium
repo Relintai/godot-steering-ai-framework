@@ -162,7 +162,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/gdc_converter/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [input]
 

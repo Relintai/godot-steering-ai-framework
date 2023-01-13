@@ -146,7 +146,7 @@ func _physics_process(delta: float) -> void:
 
 	# We add the discovered acceleration to our linear velocity. The toolkit does not limit
 	# velocity, just acceleration, so we clamp the result ourselves here.
-	velocity = (velocity + Vector2(acceleration.linear.x, acceleration.linear.y) * delta).clamped(
+	velocity = (velocity + Vector2(acceleration.linear.x, acceleration.linear.y) * delta).limit_length(
 		agent.linear_speed_max
 	)
 

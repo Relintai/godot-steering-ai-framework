@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	direction = GSAIUtils.angle_to_vector2(rotation)
 
 	velocity += direction * acceleration_max * movement * delta
-	velocity = velocity.clamped(speed_max)
+	velocity = velocity.limit_length(speed_max)
 	velocity = velocity.linear_interpolate(Vector2.ZERO, 0.1)
 	velocity = move_and_slide(velocity)
 

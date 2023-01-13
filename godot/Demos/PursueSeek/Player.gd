@@ -77,7 +77,7 @@ func _calculate_linear_velocity(
 	var velocity := current_velocity + facing_direction * actual_strength * delta
 	velocity = velocity.linear_interpolate(Vector2.ZERO, ship_drag_coefficient)
 
-	return velocity.clamped(speed_max)
+	return velocity.limit_length(speed_max)
 
 
 func _get_movement() -> Vector2:
