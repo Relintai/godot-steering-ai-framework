@@ -4,10 +4,12 @@ class_name GSAIUtils
 
 # Returns the `vector` with its length capped to `limit`.
 static func clampedv3(vector: Vector3, limit: float) -> Vector3:
-	var length_squared := vector.length_squared()
-	var limit_squared := limit * limit
+	var length_squared : float = vector.length_squared()
+	var limit_squared : float = limit * limit
+	
 	if length_squared > limit_squared:
 		vector *= sqrt(limit_squared / length_squared)
+		
 	return vector
 
 # Returns an angle in radians between the positive X axis and the `vector`.

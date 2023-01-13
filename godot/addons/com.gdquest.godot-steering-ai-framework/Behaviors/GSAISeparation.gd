@@ -9,16 +9,16 @@ class_name GSAISeparation
 extends GSAIGroupBehavior
 
 # The coefficient to calculate how fast the separation strength decays with distance.
-var decay_coefficient := 1.0
+var decay_coefficient : float = 1.0
 
-var _acceleration: GSAITargetAcceleration
+var _acceleration : GSAITargetAcceleration
 
 
-func _init(agent: GSAISteeringAgent, proximity: GSAIProximity).(agent, proximity) -> void:
+func _init(agent : GSAISteeringAgent, proximity : GSAIProximity).(agent, proximity) -> void:
 	pass
 
 
-func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
 	acceleration.set_zero()
 	self._acceleration = acceleration
 	# warning-ignore:return_value_discarded
@@ -28,11 +28,11 @@ func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 # Callback for the proximity to call when finding neighbors. Determines the amount of
 # acceleration that `neighbor` imposes based on its distance from the owner agent.
 # @tags - virtual
-func _report_neighbor(neighbor: GSAISteeringAgent) -> bool:
-	var to_agent := agent.position - neighbor.position
+func _report_neighbor(neighbor : GSAISteeringAgent) -> bool:
+	var to_agent : Vector3 = agent.position - neighbor.position
 
-	var distance_squared := to_agent.length_squared()
-	var acceleration_max := agent.linear_acceleration_max
+	var distance_squared : float = to_agent.length_squared()
+	var acceleration_max : float = agent.linear_acceleration_max
 
 	var strength := decay_coefficient / distance_squared
 	if strength > acceleration_max:

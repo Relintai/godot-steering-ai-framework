@@ -15,10 +15,10 @@ func _init(agent: GSAISteeringAgent, agents: Array).(agent, agents) -> void:
 # adds one to the count if its `callback` returns true.
 # @tags - virtual
 func _find_neighbors(callback: FuncRef) -> int:
-	var neighbor_count := 0
-	var agent_count := agents.size()
+	var neighbor_count : int = 0
+	var agent_count : int = agents.size()
 	for i in range(agent_count):
-		var current_agent := agents[i] as GSAISteeringAgent
+		var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
 
 		if current_agent != agent:
 			if callback.call_func(current_agent):

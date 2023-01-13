@@ -5,10 +5,10 @@ extends GSAIProximity
 class_name GSAIRadiusProximity
 
 # The radius around the owning agent to find neighbors in
-var radius := 0.0
+var radius : float = 0.0
 
-var _last_frame := 0
-var _scene_tree: SceneTree
+var _last_frame : int = 0
+var _scene_tree : SceneTree
 
 
 func _init(agent: GSAISteeringAgent, agents: Array, _radius: float).(agent, agents) -> void:
@@ -21,23 +21,29 @@ func _init(agent: GSAISteeringAgent, agents: Array, _radius: float).(agent, agen
 # `_find_neighbors` calls `callback` for each agent in the `agents` array that lie within
 # the radius around the owning agent and adds one to the count if its `callback` returns true.
 # @tags - virtual
-func _find_neighbors(callback: FuncRef) -> int:
-	var agent_count := agents.size()
-	var neighbor_count := 0
+func _find_neighbors(callback : FuncRef) -> int:
+	var agent_count : int = agents.size()
+	var neighbor_count : int = 0
 
-	var current_frame := _scene_tree.get_frame() if _scene_tree else -_last_frame
+	var current_frame : int
+	
+	if _scene_tree:
+		current_frame = _scene_tree.get_frame()  
+	else:
+		current_frame = -_last_frame
+	
 	if current_frame != _last_frame:
 		_last_frame = current_frame
 
-		var owner_position := agent.position
+		var owner_position : Vector3 = agent.position
 
 		for i in range(agent_count):
-			var current_agent := agents[i] as GSAISteeringAgent
+			var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
 
 			if current_agent != agent:
-				var distance_squared := owner_position.distance_squared_to(current_agent.position)
+				var distance_squared : float = owner_position.distance_squared_to(current_agent.position)
 
-				var range_to := radius + current_agent.bounding_radius
+				var range_to : float = radius + current_agent.bounding_radius
 
 				if distance_squared < range_to * range_to:
 					if callback.call_func(current_agent):
@@ -48,7 +54,7 @@ func _find_neighbors(callback: FuncRef) -> int:
 			current_agent.is_tagged = false
 	else:
 		for i in range(agent_count):
-			var current_agent = agents[i] as GSAISteeringAgent
+			var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
 
 			if current_agent != agent and current_agent.is_tagged:
 				if callback.call_func(current_agent):

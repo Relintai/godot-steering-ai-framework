@@ -1,13 +1,13 @@
 # A desired linear and angular amount of acceleration requested by the steering
 # system.
 # @category - Base types
+extends Reference
 class_name GSAITargetAcceleration
 
 # Linear acceleration
-var linear := Vector3.ZERO
+var linear : Vector3 = Vector3.ZERO
 # Angular acceleration
-var angular := 0.0
-
+var angular : float = 0.0
 
 # Sets the linear and angular components to 0.
 func set_zero() -> void:
@@ -16,17 +16,14 @@ func set_zero() -> void:
 	linear.z = 0.0
 	angular = 0.0
 
-
 # Adds `accel`'s components, multiplied by `scalar`, to this one.
 func add_scaled_accel(accel: GSAITargetAcceleration, scalar: float) -> void:
 	linear += accel.linear * scalar
 	angular += accel.angular * scalar
 
-
 # Returns the squared magnitude of the linear and angular components.
 func get_magnitude_squared() -> float:
 	return linear.length_squared() + angular * angular
-
 
 # Returns the magnitude of the linear and angular components.
 func get_magnitude() -> float:

@@ -23,7 +23,7 @@ func _init(_body: RigidBody) -> void:
 # @tags - virtual
 func _apply_steering(acceleration: GSAITargetAcceleration, _delta: float) -> void:
 	var _body: RigidBody = _body_ref.get_ref()
-	if not _body:
+	if !_body:
 		return
 		
 	_applied_steering = true
@@ -53,8 +53,8 @@ func _on_SceneTree_frame() -> void:
 	if not _body.is_inside_tree() or _body.get_tree().paused:
 		return
 		
-	var current_position := _body.transform.origin
-	var current_orientation := _body.rotation.y
+	var current_position : Vector3 = _body.transform.origin
+	var current_orientation : float = _body.rotation.y
 
 	position = current_position
 	orientation = current_orientation
