@@ -24,14 +24,17 @@ var _body_ref : WeakRef
 
 
 func _init(_body: KinematicBody2D, _movement_type: int = MovementType.SLIDE) -> void:
-	if !_body.is_inside_tree():
-		yield(_body, "ready")
-
 	self.body = _body
 	self.movement_type = _movement_type
 
+	if !_body.is_inside_tree():
+		_body.connect("ready", self, "_body_ready")
+	else:
+		_body_ready()
+
+func _body_ready() -> void:
 	# warning-ignore:return_value_discarded
-	_body.get_tree().connect("physics_frame", self, "_on_SceneTree_physics_frame")
+	body.get_tree().connect("physics_frame", self, "_on_SceneTree_physics_frame")
 
 
 # Moves the agent's `body` by target `acceleration`.

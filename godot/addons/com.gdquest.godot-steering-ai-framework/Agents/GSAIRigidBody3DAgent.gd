@@ -11,12 +11,16 @@ var _last_position: Vector3
 var _body_ref: WeakRef
 
 func _init(_body: RigidBody) -> void:
-	if not _body.is_inside_tree():
-		yield(_body, "ready")
 	self.body = _body
 
+	if !_body.is_inside_tree():
+		_body.connect("ready", self, "_body_ready")
+	else:
+		_body_ready()
+
+func _body_ready() -> void:
 	# warning-ignore:return_value_discarded
-	_body.get_tree().connect("physics_frame", self, "_on_SceneTree_frame")
+	body.get_tree().connect("physics_frame", self, "_on_SceneTree_frame")
 
 
 # Moves the agent's `body` by target `acceleration`.
