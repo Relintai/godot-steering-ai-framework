@@ -11,7 +11,7 @@ func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	acceleration.set_zero()
 	_center_of_mass = Vector3.ZERO
 	
-	var neighbor_count = proximity._find_neighbors(_callback)
+	var neighbor_count = proximity.find_neighbors(_callback)
 	if neighbor_count > 0:
 		_center_of_mass *= 1.0 / neighbor_count
 		acceleration.linear = ((_center_of_mass - agent.position).normalized() * agent.linear_acceleration_max)

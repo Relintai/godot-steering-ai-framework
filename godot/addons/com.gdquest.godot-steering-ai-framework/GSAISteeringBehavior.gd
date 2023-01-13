@@ -17,10 +17,9 @@ var agent : GSAISteeringAgent
 # Sets the `acceleration` with the behavior's desired amount of acceleration.
 func calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	if is_enabled:
-		_calculate_steering(acceleration)
+		call("_calculate_steering", acceleration)
 	else:
 		acceleration.set_zero()
-
 
 func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	acceleration.set_zero()

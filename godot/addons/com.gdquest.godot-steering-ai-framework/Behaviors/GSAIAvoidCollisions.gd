@@ -18,7 +18,7 @@ func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 	_first_minimum_separation = 0
 	_first_distance = 0
 
-	var neighbor_count : int = proximity._find_neighbors(_callback)
+	var neighbor_count : int = proximity.find_neighbors(_callback)
 
 	if neighbor_count == 0 or not _first_neighbor:
 		acceleration.set_zero()

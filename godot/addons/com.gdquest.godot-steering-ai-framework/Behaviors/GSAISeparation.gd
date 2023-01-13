@@ -11,14 +11,14 @@ extends GSAIGroupBehavior
 # The coefficient to calculate how fast the separation strength decays with distance.
 var decay_coefficient : float = 1.0
 
-var _acceleration : GSAITargetAcceleration
+var acceleration : GSAITargetAcceleration
 
 
-func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
+func _calculate_steering(_acceleration : GSAITargetAcceleration) -> void:
 	acceleration.set_zero()
-	self._acceleration = acceleration
+	self.acceleration = _acceleration
 	# warning-ignore:return_value_discarded
-	proximity._find_neighbors(_callback)
+	proximity.find_neighbors(_callback)
 
 
 # Callback for the proximity to call when finding neighbors. Determines the amount of
@@ -34,6 +34,6 @@ func _report_neighbor(neighbor : GSAISteeringAgent) -> bool:
 	if strength > acceleration_max:
 		strength = acceleration_max
 
-	_acceleration.linear += to_agent * (strength / sqrt(distance_squared))
+	acceleration.linear += to_agent * (strength / sqrt(distance_squared))
 
 	return true

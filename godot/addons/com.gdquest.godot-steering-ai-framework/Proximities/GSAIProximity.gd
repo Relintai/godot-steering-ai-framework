@@ -9,6 +9,8 @@ var agent : GSAISteeringAgent
 # The agents who are part of this group and could be potential neighbors
 var agents : Array = Array()
 
+func find_neighbors(_callback: FuncRef) -> int:
+	return call("_find_neighbors", _callback)
 
 # Returns a number of neighbors based on a `callback` function.
 #

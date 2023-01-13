@@ -11,6 +11,7 @@ class_name GSAIBlend
 extends GSAISteeringBehavior
 
 var _behaviors : Array = Array()
+#note only add a getter
 var _accel : GSAITargetAcceleration = GSAITargetAcceleration.new()
 
 # Appends a behavior to the internal array along with its `weight`.
