@@ -21,7 +21,13 @@ func _init(agent: GSAISteeringAgent).(agent) -> void:
 # Appends a behavior to the internal array along with its `weight`.
 func add(behavior: GSAISteeringBehavior, weight: float) -> void:
 	behavior.agent = agent
-	_behaviors.append({behavior = behavior, weight = weight})
+	
+	var dict : Dictionary = Dictionary()
+	
+	dict["behavior"] = behavior;
+	dict["weight"] = weight;
+	
+	_behaviors.append(dict)
 
 
 # Returns the behavior at the specified `index`, or an empty `Dictionary` if

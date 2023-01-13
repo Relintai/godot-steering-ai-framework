@@ -19,7 +19,7 @@ func _on_SceneTree_size_changed() -> void:
 		ProjectSettings["display/window/size/width"], ProjectSettings["display/window/size/height"]
 	)
 	for b in get_children():
-		var boundary: String = b.name.rsplit("Boundary")[0]
+		var boundary: String = str(b.name).rsplit("Boundary")[0]
 		match boundary:
 			"Left":
 				b.global_position = Vector2(0, size.y / 2)
