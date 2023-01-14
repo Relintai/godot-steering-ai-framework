@@ -1,5 +1,5 @@
-extends GSAISpecializedAgent
-class_name GSAIRigidBody3DAgent
+extends GDGSAISpecializedAgent
+class_name GDGSAIRigidBody3DAgent
 
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a RigidBody
@@ -18,7 +18,7 @@ func _body_ready() -> void:
 
 # Moves the agent's `body` by target `acceleration`.
 # @tags - virtual
-func _apply_steering(acceleration: GSAITargetAcceleration, _delta: float) -> void:
+func _apply_steering(acceleration: GDGSAITargetAcceleration, _delta: float) -> void:
 	var _body: RigidBody = _body_ref.get_ref()
 	if !_body:
 		return

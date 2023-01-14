@@ -1,7 +1,7 @@
-extends GSAIAgentLocation
-class_name GSAISteeringAgent
+extends GDGSAIAgentLocation
+class_name GDGSAISteeringAgent
 
-# Adds velocity, speed, and size data to `GSAIAgentLocation`.
+# Adds velocity, speed, and size data to `GDGSAIAgentLocation`.
 #
 # It is the character's responsibility to keep this information up to date for
 # the steering toolkit to work correctly.

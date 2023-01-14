@@ -18,52 +18,52 @@ var linear_drag := 0.1
 var angular_drag := 0.1
 
 # Holds the linear and angular components calculated by our steering behaviors.
-var acceleration : GSAITargetAcceleration = null
+var acceleration : GDGSAITargetAcceleration = null
 
 onready var current_health := health_max
 
-# GSAISteeringAgent holds our agent's position, orientation, maximum speed and acceleration.
-var agent : GSAISteeringAgent = null
+# GDGSAISteeringAgent holds our agent's position, orientation, maximum speed and acceleration.
+var agent : GDGSAISteeringAgent = null
 
 var player: Node = null
 # This assumes that our player class will keep its own agent updated.
-var player_agent : GSAISteeringAgent = null
+var player_agent : GDGSAISteeringAgent = null
 
 # Proximities represent an area with which an agent can identify where neighbors in its relevant
 # group are. In our case, the group will feature the player, which will be used to avoid a
 # collision with them. We use a radius proximity so the player is only relevant inside 100 pixels.
-var proximity : GSAIRadiusProximity = null
+var proximity : GDGSAIRadiusProximity = null
 
-# GSAIBlend combines behaviors together, calculating all of their acceleration together and adding
+# GDGSAIBlend combines behaviors together, calculating all of their acceleration together and adding
 # them together, multiplied by a strength. We will have one for fleeing, and one for pursuing,
 # toggling them depending on the agent's health. Since we want the agent to rotate AND move, then
 # we aim to blend them together.
-var flee_blend : GSAIBlend = null
-var pursue_blend : GSAIBlend = null
+var flee_blend : GDGSAIBlend = null
+var pursue_blend : GDGSAIBlend = null
 
-# GSAIPriority will be the main steering behavior we use. It holds sub-behaviors and will pick the
+# GDGSAIPriority will be the main steering behavior we use. It holds sub-behaviors and will pick the
 # first one that returns non-zero acceleration, ignoring any afterwards.
-var priority : GSAIPriority = null
+var priority : GDGSAIPriority = null
 
 
 func _ready() -> void:
-	acceleration = GSAITargetAcceleration.new()
-	agent = GSAISteeringAgent.new()
+	acceleration = GDGSAITargetAcceleration.new()
+	agent = GDGSAISteeringAgent.new()
 	player = get_tree().get_nodes_in_group("Player")[0]
 	player_agent = player.agent
 	
-	proximity = GSAIRadiusProximity.new()
+	proximity = GDGSAIRadiusProximity.new()
 	proximity.agent = agent
 	proximity.agents = [ player_agent ]
 	proximity.radius = 100
 	
-	flee_blend = GSAIBlend.new()
+	flee_blend = GDGSAIBlend.new()
 	flee_blend.agent = agent
 	
-	pursue_blend = GSAIBlend.new()
+	pursue_blend = GDGSAIBlend.new()
 	pursue_blend.agent = agent
 	
-	priority = GSAIPriority.new()
+	priority = GDGSAIPriority.new()
 	priority.agent = agent
 	
 	# ---------- Configuration for our agent ----------
@@ -77,26 +77,26 @@ func _ready() -> void:
 	# ---------- Configuration for our behaviors ----------
 	# Pursue will happen while the agent is in good health. It produces acceleration that takes
 	# the agent on an intercept course with the target, predicting its position in the future.
-	var pursue : GSAIPursue = GSAIPursue.new()
+	var pursue : GDGSAIPursue = GDGSAIPursue.new()
 	pursue.agent = agent
 	pursue.target = player_agent
 	pursue.predict_time_max = 1.5
 
 	# Flee will happen while the agent is in bad health, so will start disabled. It produces
 	# acceleration that takes the agent directly away from the target with no prediction.
-	var flee : GSAIFlee = GSAIFlee.new()
+	var flee : GDGSAIFlee = GDGSAIFlee.new()
 	flee.agent = agent
 	flee.target = player_agent
 
 	# AvoidCollision tries to keep the agent from running into any of the neighbors found in its
 	# proximity group. In our case, this will be the player, if they are close enough.
-	var avoid : GSAIAvoidCollisions = GSAIAvoidCollisions.new()
+	var avoid : GDGSAIAvoidCollisions = GDGSAIAvoidCollisions.new()
 	avoid.agent = agent
 	avoid.proximity = proximity
 
 	# Face turns the agent to keep looking towards its target. It will be enabled while the agent
 	# is not fleeing due to low health. It tries to arrive 'on alignment' with 0 remaining velocity.
-	var face : GSAIFace = GSAIFace.new()
+	var face : GDGSAIFace = GDGSAIFace.new()
 	face.agent = agent
 	face.target = player_agent
 
@@ -108,7 +108,7 @@ func _ready() -> void:
 
 	# LookWhereYouGo turns the agent to keep looking towards its direction of travel. It will only
 	# be enabled while the agent is at low health.
-	var look : GSAILookWhereYouGo = GSAILookWhereYouGo.new()
+	var look : GDGSAILookWhereYouGo = GDGSAILookWhereYouGo.new()
 	look.agent = agent
 	# How close for the agent to be 'aligned', if not exact
 	look.alignment_tolerance = deg2rad(5)

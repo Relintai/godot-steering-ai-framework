@@ -5,39 +5,39 @@ var draw_proximity: bool
 var _boundary_right: float
 var _boundary_bottom: float
 var _radius: float
-var _accel := GSAITargetAcceleration.new()
+var _accel := GDGSAITargetAcceleration.new()
 var _velocity := Vector2.ZERO
 var _direction := Vector2()
 var _drag := 0.1
 var _color := Color(0.4, 1.0, 0.89, 0.3)
 
 onready var collision := $CollisionShape2D
-var agent :GSAIKinematicBody2DAgent= null
-var proximity :GSAIRadiusProximity= null
-var avoid :GSAIAvoidCollisions= null
-var target :GSAIAgentLocation= null
-var seek :GSAISeek= null
-var priority :GSAIPriority= null
+var agent :GDGSAIKinematicBody2DAgent= null
+var proximity :GDGSAIRadiusProximity= null
+var avoid :GDGSAIAvoidCollisions= null
+var target :GDGSAIAgentLocation= null
+var seek :GDGSAISeek= null
+var priority :GDGSAIPriority= null
 
 func _ready() -> void:
-	agent = GSAIKinematicBody2DAgent.new()
+	agent = GDGSAIKinematicBody2DAgent.new()
 	agent.body = self
 	
-	proximity = GSAIRadiusProximity.new()
+	proximity = GDGSAIRadiusProximity.new()
 	proximity.agent = agent
 	proximity.radius = 140
 	
-	avoid = GSAIAvoidCollisions.new()
+	avoid = GDGSAIAvoidCollisions.new()
 	avoid.agent = agent
 	avoid.proximity = proximity
 	
-	target = GSAIAgentLocation.new()
+	target = GDGSAIAgentLocation.new()
 	
-	seek = GSAISeek.new()
+	seek = GDGSAISeek.new()
 	seek.agent = agent
 	seek.target = target
 	
-	priority = GSAIPriority.new()
+	priority = GDGSAIPriority.new()
 	priority.agent = agent
 	priority.zero_threshold = 0.0001
 

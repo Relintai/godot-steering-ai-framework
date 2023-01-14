@@ -1,4 +1,4 @@
-class_name GSAIUtils
+class_name GDGSAIUtils
 
 # Math and vector utility functions.
 # @Category - Utilities

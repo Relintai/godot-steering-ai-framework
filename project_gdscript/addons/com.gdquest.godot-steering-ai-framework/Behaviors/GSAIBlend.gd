@@ -1,21 +1,21 @@
-class_name GSAIBlend
-extends GSAISteeringBehavior
+class_name GDGSAIBlend
+extends GDGSAISteeringBehavior
 
 # Blends multiple steering behaviors into one, and returns a weighted
 # acceleration from their calculations.
 #
 # Stores the behaviors internally as dictionaries of the form
 # {
-# 	behavior : GSAISteeringBehavior,
+# 	behavior : GDGSAISteeringBehavior,
 # 	weight : float
 # }
 # @category - Combination behaviors
 
 var _behaviors : Array = Array()
-var _accel : GSAITargetAcceleration = GSAITargetAcceleration.new()
+var _accel : GDGSAITargetAcceleration = GDGSAITargetAcceleration.new()
 
 # Appends a behavior to the internal array along with its `weight`.
-func add_behavior(behavior : GSAISteeringBehavior, weight : float) -> void:
+func add_behavior(behavior : GDGSAISteeringBehavior, weight : float) -> void:
 	behavior.agent = agent
 	
 	var dict : Dictionary = Dictionary()
@@ -48,10 +48,10 @@ func remove_behavior(index : int) -> void:
 func get_behaviour_count() -> int:
 	return _behaviors.size()
 
-func get_accel() -> GSAITargetAcceleration:
+func get_accel() -> GDGSAITargetAcceleration:
 	return _accel
 
-func _calculate_steering(blended_accel: GSAITargetAcceleration) -> void:
+func _calculate_steering(blended_accel: GDGSAITargetAcceleration) -> void:
 	blended_accel.set_zero()
 
 	for i in range(_behaviors.size()):
@@ -60,5 +60,5 @@ func _calculate_steering(blended_accel: GSAITargetAcceleration) -> void:
 
 		blended_accel.add_scaled_accel(_accel, bw.weight)
 
-	blended_accel.linear = GSAIUtils.clampedv3(blended_accel.linear, agent.linear_acceleration_max)
+	blended_accel.linear = GDGSAIUtils.clampedv3(blended_accel.linear, agent.linear_acceleration_max)
 	blended_accel.angular = clamp(blended_accel.angular, -agent.angular_acceleration_max, agent.angular_acceleration_max)

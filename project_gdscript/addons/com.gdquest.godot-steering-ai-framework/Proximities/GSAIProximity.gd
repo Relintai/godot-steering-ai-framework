@@ -1,12 +1,12 @@
 extends Reference
-class_name GSAIProximity
+class_name GDGSAIProximity
 
 # Base container type that stores data to find the neighbors of an agent.
 # @category - Proximities
 # @tags - abstract
 
 # The owning agent whose neighbors are found in the group
-var agent : GSAISteeringAgent
+var agent : GDGSAISteeringAgent
 # The agents who are part of this group and could be potential neighbors
 var agents : Array = Array()
 

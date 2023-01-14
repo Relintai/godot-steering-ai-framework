@@ -1,5 +1,5 @@
-class_name GSAIPriority
-extends GSAISteeringBehavior
+class_name GDGSAIPriority
+extends GDGSAISteeringBehavior
 
 # Container for multiple behaviors that returns the result of the first child
 # behavior with non-zero acceleration.
@@ -14,12 +14,12 @@ var _last_selected_index : int = 0
 var _behaviors : Array = Array()
 
 # Appends a steering behavior as a child of this container.
-func add_behavior(behavior: GSAISteeringBehavior) -> void:
+func add_behavior(behavior: GDGSAISteeringBehavior) -> void:
 	_behaviors.append(behavior)
 
 # Returns the behavior at the position in the pool referred to by `index`, or
 # `null` if no behavior was found.
-func get_behavior(index : int) -> GSAISteeringBehavior:
+func get_behavior(index : int) -> GDGSAISteeringBehavior:
 	if _behaviors.size() > index:
 		return _behaviors[index]
 		
@@ -41,7 +41,7 @@ func get_behaviour_count() -> int:
 	return _behaviors.size()
 	
 
-func _calculate_steering(accel : GSAITargetAcceleration) -> void:
+func _calculate_steering(accel : GDGSAITargetAcceleration) -> void:
 	var threshold_squared : float = zero_threshold * zero_threshold
 
 	_last_selected_index = -1
@@ -51,7 +51,7 @@ func _calculate_steering(accel : GSAITargetAcceleration) -> void:
 	if size > 0:
 		for i in range(size):
 			_last_selected_index = i
-			var behavior: GSAISteeringBehavior = _behaviors[i]
+			var behavior: GDGSAISteeringBehavior = _behaviors[i]
 			behavior.calculate_steering(accel)
 
 			if accel.get_magnitude_squared() > threshold_squared:

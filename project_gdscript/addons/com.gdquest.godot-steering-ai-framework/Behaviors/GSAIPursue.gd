@@ -1,17 +1,17 @@
-class_name GSAIPursue
-extends GSAISteeringBehavior
+class_name GDGSAIPursue
+extends GDGSAISteeringBehavior
 
 # Calculates an acceleration to make an agent intercept another based on the
 # target agent's movement.
 # @category - Individual behaviors
 
 # The target agent that the behavior is trying to intercept.
-var target : GSAISteeringAgent
+var target : GDGSAISteeringAgent
 # The maximum amount of time in the future the behavior predicts the target's
 # location.
 var predict_time_max : float = 1.0
 
-func _calculate_steering(acceleration : GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration : GDGSAITargetAcceleration) -> void:
 	var target_position : Vector3 = target.position
 	var distance_squared : float = (target_position - agent.position).length_squared()
 

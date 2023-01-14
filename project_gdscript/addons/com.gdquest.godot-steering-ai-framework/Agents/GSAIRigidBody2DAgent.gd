@@ -1,5 +1,5 @@
-extends GSAISpecializedAgent
-class_name GSAIRigidBody2DAgent
+extends GDGSAISpecializedAgent
+class_name GDGSAIRigidBody2DAgent
 
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a RigidBody2D
@@ -19,16 +19,16 @@ func _body_ready() -> void:
 
 # Moves the agent's `body` by target `acceleration`.
 # @tags - virtual
-func _apply_steering(acceleration : GSAITargetAcceleration, _delta : float) -> void:
+func _apply_steering(acceleration : GDGSAITargetAcceleration, _delta : float) -> void:
 	var _body: RigidBody2D = _body_ref.get_ref()
 	if not _body:
 		return
 
 	applied_steering = true
-	_body.apply_central_impulse(GSAIUtils.to_vector2(acceleration.linear))
+	_body.apply_central_impulse(GDGSAIUtils.to_vector2(acceleration.linear))
 	_body.apply_torque_impulse(acceleration.angular)
 	if calculate_velocities:
-		linear_velocity = GSAIUtils.to_vector3(_body.linear_velocity)
+		linear_velocity = GDGSAIUtils.to_vector3(_body.linear_velocity)
 		angular_velocity = _body.angular_velocity
 
 
@@ -44,7 +44,7 @@ func _set_body(value: RigidBody2D) -> void:
 	_last_position = value.global_position
 	last_orientation = value.rotation
 
-	position = GSAIUtils.to_vector3(_last_position)
+	position = GDGSAIUtils.to_vector3(_last_position)
 	orientation = last_orientation
 	
 	if !had_body:
@@ -65,12 +65,12 @@ func _on_SceneTree_frame() -> void:
 	var current_position : Vector2 = _body.global_position
 	var current_orientation : float = _body.rotation
 
-	position = GSAIUtils.to_vector3(current_position)
+	position = GDGSAIUtils.to_vector3(current_position)
 	orientation = current_orientation
 
 	if calculate_velocities:
 		if applied_steering:
 			applied_steering = false
 		else:
-			linear_velocity = GSAIUtils.to_vector3(_body.linear_velocity)
+			linear_velocity = GDGSAIUtils.to_vector3(_body.linear_velocity)
 			angular_velocity = _body.angular_velocity

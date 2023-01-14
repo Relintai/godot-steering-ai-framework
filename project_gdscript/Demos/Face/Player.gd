@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 var speed: float
 
-onready var agent := GSAIAgentLocation.new()
+onready var agent := GDGSAIAgentLocation.new()
 
 
 func _physics_process(_delta: float) -> void:

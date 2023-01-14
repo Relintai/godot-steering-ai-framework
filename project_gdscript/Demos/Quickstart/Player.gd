@@ -10,18 +10,18 @@ var velocity := Vector2.ZERO
 var angular_velocity := 0.0
 var direction := Vector2.RIGHT
 
-var agent : GSAISteeringAgent = null
-var proxy_target : GSAIAgentLocation = null
-var face : GSAIFace = null
+var agent : GDGSAISteeringAgent = null
+var proxy_target : GDGSAIAgentLocation = null
+var face : GDGSAIFace = null
 
-onready var accel := GSAITargetAcceleration.new()
+onready var accel := GDGSAITargetAcceleration.new()
 onready var bullets := owner.get_node("Bullets")
 
 
 func _ready() -> void:
-	agent = GSAISteeringAgent.new()
-	proxy_target = GSAIAgentLocation.new()
-	face = GSAIFace.new()
+	agent = GDGSAISteeringAgent.new()
+	proxy_target = GDGSAIAgentLocation.new()
+	face = GDGSAIFace.new()
 	face.agent = agent
 	face.target = proxy_target
 	
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 
 	var movement := get_movement()
 
-	direction = GSAIUtils.angle_to_vector2(rotation)
+	direction = GDGSAIUtils.angle_to_vector2(rotation)
 
 	velocity += direction * acceleration_max * movement * delta
 	velocity = velocity.clamped(speed_max)

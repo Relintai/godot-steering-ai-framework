@@ -1,5 +1,5 @@
 extends Reference
-class_name GSAITargetAcceleration
+class_name GDGSAITargetAcceleration
 
 # A desired linear and angular amount of acceleration requested by the steering
 # system.
@@ -18,7 +18,7 @@ func set_zero() -> void:
 	angular = 0.0
 
 # Adds `accel`'s components, multiplied by `scalar`, to this one.
-func add_scaled_accel(accel: GSAITargetAcceleration, scalar: float) -> void:
+func add_scaled_accel(accel: GDGSAITargetAcceleration, scalar: float) -> void:
 	linear += accel.linear * scalar
 	angular += accel.angular * scalar
 

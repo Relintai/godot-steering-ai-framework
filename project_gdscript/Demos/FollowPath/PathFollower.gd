@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 var _velocity := Vector2.ZERO
-var _accel := GSAITargetAcceleration.new()
+var _accel := GDGSAITargetAcceleration.new()
 var _valid := false
 var _drag := 0.1
 
-var agent := GSAIKinematicBody2DAgent.new()
-var path := GSAIPath.new()
-var follow := GSAIFollowPath.new()
+var agent := GDGSAIKinematicBody2DAgent.new()
+var path := GDGSAIPath.new()
+var follow := GDGSAIFollowPath.new()
 
 func _ready() -> void:
 	agent.body = self

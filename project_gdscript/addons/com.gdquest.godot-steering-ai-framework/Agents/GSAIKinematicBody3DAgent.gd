@@ -1,5 +1,5 @@
-extends GSAISpecializedAgent
-class_name GSAIKinematicBody3DAgent
+extends GDGSAISpecializedAgent
+class_name GDGSAIKinematicBody3DAgent
 
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a KinematicBody
@@ -31,7 +31,7 @@ func _body_ready() -> void:
 
 # Moves the agent's `body` by target `acceleration`.
 # @tags - virtual
-func _apply_steering(acceleration: GSAITargetAcceleration, delta: float) -> void:
+func _apply_steering(acceleration: GDGSAITargetAcceleration, delta: float) -> void:
 	applied_steering = true
 	if movement_type == MovementType.COLLIDE:
 			_apply_collide_steering(acceleration.linear, delta)
@@ -48,7 +48,7 @@ func _apply_sliding_steering(accel: Vector3, delta: float) -> void:
 	if !_body:
 		return
 
-	var velocity : Vector3 = GSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
+	var velocity : Vector3 = GDGSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
@@ -63,7 +63,7 @@ func _apply_collide_steering(accel: Vector3, delta: float) -> void:
 	if !_body:
 		return
 
-	var velocity : Vector3 = GSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
+	var velocity : Vector3 = GDGSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
@@ -79,7 +79,7 @@ func _apply_position_steering(accel: Vector3, delta: float) -> void:
 	if !_body:
 		return
 
-	var velocity : Vector3 = GSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
+	var velocity : Vector3 = GDGSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
@@ -146,7 +146,7 @@ func _on_SceneTree_physics_frame() -> void:
 		if applied_steering:
 			applied_steering = false
 		else:
-			linear_velocity = GSAIUtils.clampedv3(current_position - _last_position, linear_speed_max)
+			linear_velocity = GDGSAIUtils.clampedv3(current_position - _last_position, linear_speed_max)
 			
 			if apply_linear_drag:
 				linear_velocity = linear_velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)

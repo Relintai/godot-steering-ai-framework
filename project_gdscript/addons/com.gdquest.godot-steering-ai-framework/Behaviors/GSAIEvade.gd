@@ -1,5 +1,5 @@
-class_name GSAIEvade
-extends GSAIPursue
+class_name GDGSAIEvade
+extends GDGSAIPursue
 
 # Calculates acceleration to take an agent away from where a target agent is
 # moving.

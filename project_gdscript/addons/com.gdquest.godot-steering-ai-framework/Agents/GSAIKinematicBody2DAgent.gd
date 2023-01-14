@@ -1,5 +1,5 @@
-extends GSAISpecializedAgent
-class_name GSAIKinematicBody2DAgent
+extends GDGSAISpecializedAgent
+class_name GDGSAIKinematicBody2DAgent
 
 # A specialized steering agent that updates itself every frame so the user does
 # not have to using a KinematicBody2D
@@ -31,7 +31,7 @@ func _body_ready() -> void:
 
 # Moves the agent's `body` by target `acceleration`.
 # @tags - virtual
-func _apply_steering(acceleration: GSAITargetAcceleration, delta: float) -> void:
+func _apply_steering(acceleration: GDGSAITargetAcceleration, delta: float) -> void:
 	applied_steering = true
 	
 	if movement_type == MovementType.COLLIDE:
@@ -53,7 +53,7 @@ func _apply_sliding_steering(accel: Vector3, delta: float) -> void:
 	if !_body.is_inside_tree() or _body.get_tree().paused:
 		return
 		
-	var velocity : Vector2 = GSAIUtils.to_vector2(linear_velocity + accel * delta).clamped(linear_speed_max)
+	var velocity : Vector2 = GDGSAIUtils.to_vector2(linear_velocity + accel * delta).clamped(linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector2.ZERO, linear_drag_percentage)
@@ -61,7 +61,7 @@ func _apply_sliding_steering(accel: Vector3, delta: float) -> void:
 	velocity = _body.move_and_slide(velocity)
 	
 	if calculate_velocities:
-		linear_velocity = GSAIUtils.to_vector3(velocity)
+		linear_velocity = GDGSAIUtils.to_vector3(velocity)
 
 
 func _apply_collide_steering(accel: Vector3, delta: float) -> void:
@@ -69,12 +69,12 @@ func _apply_collide_steering(accel: Vector3, delta: float) -> void:
 	if !_body:
 		return
 		
-	var velocity : Vector3 = GSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
+	var velocity : Vector3 = GDGSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
 		
 	# warning-ignore:return_value_discarded
-	_body.move_and_collide(GSAIUtils.to_vector2(velocity) * delta)
+	_body.move_and_collide(GDGSAIUtils.to_vector2(velocity) * delta)
 	
 	if calculate_velocities:
 		linear_velocity = velocity
@@ -85,12 +85,12 @@ func _apply_position_steering(accel: Vector3, delta: float) -> void:
 	if !_body:
 		return
 		
-	var velocity : Vector3 = GSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
+	var velocity : Vector3 = GDGSAIUtils.clampedv3(linear_velocity + accel * delta, linear_speed_max)
 	
 	if apply_linear_drag:
 		velocity = velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)
 		
-	_body.global_position += GSAIUtils.to_vector2(velocity) * delta
+	_body.global_position += GDGSAIUtils.to_vector2(velocity) * delta
 	
 	if calculate_velocities:
 		linear_velocity = velocity
@@ -125,7 +125,7 @@ func _set_body(value: KinematicBody2D) -> void:
 	_last_position = value.global_position
 	last_orientation = value.rotation
 
-	position = GSAIUtils.to_vector3(_last_position)
+	position = GDGSAIUtils.to_vector3(_last_position)
 	orientation = last_orientation
 	
 	if !had_body:
@@ -143,14 +143,14 @@ func _on_SceneTree_physics_frame() -> void:
 	var current_position : Vector2 = _body.global_position
 	var current_orientation : float = _body.rotation
 
-	position = GSAIUtils.to_vector3(current_position)
+	position = GDGSAIUtils.to_vector3(current_position)
 	orientation = current_orientation
 
 	if calculate_velocities:
 		if applied_steering:
 			applied_steering = false
 		else:
-			linear_velocity = GSAIUtils.clampedv3(GSAIUtils.to_vector3(current_position - _last_position), linear_speed_max)
+			linear_velocity = GDGSAIUtils.clampedv3(GDGSAIUtils.to_vector3(current_position - _last_position), linear_speed_max)
 			
 			if apply_linear_drag:
 				linear_velocity = linear_velocity.linear_interpolate(Vector3.ZERO, linear_drag_percentage)

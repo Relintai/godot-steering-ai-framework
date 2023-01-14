@@ -1,5 +1,5 @@
-extends GSAIProximity
-class_name GSAIInfiniteProximity
+extends GDGSAIProximity
+class_name GDGSAIInfiniteProximity
 
 # Determines any agent that is in the specified list as being neighbors with the
 # owner agent, regardless of distance.
@@ -14,7 +14,7 @@ func _find_neighbors(callback: FuncRef) -> int:
 	var neighbor_count : int = 0
 	var agent_count : int = agents.size()
 	for i in range(agent_count):
-		var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
+		var current_agent : GDGSAISteeringAgent = agents[i] as GDGSAISteeringAgent
 
 		if current_agent != agent:
 			if callback.call_func(current_agent):

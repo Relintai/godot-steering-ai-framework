@@ -1,28 +1,28 @@
 extends KinematicBody2D
 
-var player_agent: GSAIAgentLocation
+var player_agent: GDGSAIAgentLocation
 var velocity := Vector2.ZERO
 var start_speed: float
 var start_accel: float
 var use_seek := true
 
-var agent : GSAIKinematicBody2DAgent = null
-var accel : GSAITargetAcceleration = null
-var seek : GSAISeek = null
-var flee : GSAIFlee = null
+var agent : GDGSAIKinematicBody2DAgent = null
+var accel : GDGSAITargetAcceleration = null
+var seek : GDGSAISeek = null
+var flee : GDGSAIFlee = null
 
 
 func _ready() -> void:
-	agent = GSAIKinematicBody2DAgent.new()
+	agent = GDGSAIKinematicBody2DAgent.new()
 	agent.body = self
 	
-	accel = GSAITargetAcceleration.new()
+	accel = GDGSAITargetAcceleration.new()
 	
-	seek = GSAISeek.new()
+	seek = GDGSAISeek.new()
 	seek.agent = agent
 	seek.target = player_agent
 	
-	flee = GSAIFlee.new()
+	flee = GDGSAIFlee.new()
 	flee.agent = agent
 	flee.target = player_agent
 	

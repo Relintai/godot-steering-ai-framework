@@ -1,5 +1,5 @@
-extends GSAIProximity
-class_name GSAIRadiusProximity
+extends GDGSAIProximity
+class_name GDGSAIRadiusProximity
 
 # Determines any agent that is in the specified list as being neighbors with the owner agent if
 # they lie within the specified radius.
@@ -37,7 +37,7 @@ func _find_neighbors(callback : FuncRef) -> int:
 		var owner_position : Vector3 = agent.position
 
 		for i in range(agent_count):
-			var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
+			var current_agent : GDGSAISteeringAgent = agents[i] as GDGSAISteeringAgent
 
 			if current_agent != agent:
 				var distance_squared : float = owner_position.distance_squared_to(current_agent.position)
@@ -53,7 +53,7 @@ func _find_neighbors(callback : FuncRef) -> int:
 			current_agent.is_tagged = false
 	else:
 		for i in range(agent_count):
-			var current_agent : GSAISteeringAgent = agents[i] as GSAISteeringAgent
+			var current_agent : GDGSAISteeringAgent = agents[i] as GDGSAISteeringAgent
 
 			if current_agent != agent and current_agent.is_tagged:
 				if callback.call_func(current_agent):

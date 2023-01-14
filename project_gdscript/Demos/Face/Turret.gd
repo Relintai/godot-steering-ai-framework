@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var face: GSAIFace
-var agent := GSAIKinematicBody2DAgent.new()
+var face: GDGSAIFace
+var agent := GDGSAIKinematicBody2DAgent.new()
 
-var _accel := GSAITargetAcceleration.new()
+var _accel := GDGSAITargetAcceleration.new()
 var _angular_drag := 0.1
 var _cannon: Rect2
 var _color: Color
@@ -29,13 +29,13 @@ func _draw() -> void:
 
 
 func setup(
-	player_agent: GSAIAgentLocation,
+	player_agent: GDGSAIAgentLocation,
 	align_tolerance: float,
 	deceleration_radius: float,
 	angular_accel_max: float,
 	angular_speed_max: float
 ) -> void:
-	face = GSAIFace.new()
+	face = GDGSAIFace.new()
 	face.agent = agent
 	face.target = player_agent
 

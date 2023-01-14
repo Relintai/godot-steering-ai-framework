@@ -1,5 +1,5 @@
 extends Reference
-class_name GSAIAgentLocation
+class_name GDGSAIAgentLocation
 
 # Represents an agent with only a location and an orientation.
 # @category - Base types

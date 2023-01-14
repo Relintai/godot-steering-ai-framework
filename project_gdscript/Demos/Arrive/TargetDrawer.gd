@@ -12,6 +12,6 @@ func _ready() -> void:
 
 
 func _draw():
-	var target_position := GSAIUtils.to_vector2(arriver.target.position)
+	var target_position := GDGSAIUtils.to_vector2(arriver.target.position)
 	draw_circle(target_position, owner.deceleration_radius, deceleration_radius_color)
 	draw_circle(target_position, owner.arrival_tolerance, arrival_tolerance_color)

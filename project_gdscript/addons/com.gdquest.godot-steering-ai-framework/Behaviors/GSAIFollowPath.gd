@@ -1,22 +1,22 @@
-class_name GSAIFollowPath
-extends GSAIArrive
+class_name GDGSAIFollowPath
+extends GDGSAIArrive
 
 # Produces a linear acceleration that moves the agent along the specified path.
 # @category - Individual behaviors
 
 # The path to follow and travel along.
-var path : GSAIPath
+var path : GDGSAIPath
 # The distance along the path to generate the next target position.
 var path_offset : float = 0.0
 
-# Whether to use `GSAIArrive` behavior on an open path.
+# Whether to use `GDGSAIArrive` behavior on an open path.
 var is_arrive_enabled : bool = true
 # The amount of time in the future to predict the owning agent's position along
 # the path. Setting it to 0.0 will force non-predictive path following.
 var prediction_time : float = 0.0
 
 
-func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration: GDGSAITargetAcceleration) -> void:
 	var location : Vector3 
 	
 	if prediction_time == 0:

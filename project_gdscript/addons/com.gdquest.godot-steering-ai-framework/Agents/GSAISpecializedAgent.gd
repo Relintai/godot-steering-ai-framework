@@ -1,5 +1,5 @@
-extends GSAISteeringAgent
-class_name GSAISpecializedAgent
+extends GDGSAISteeringAgent
+class_name GDGSAISpecializedAgent
 
 # A base class for a specialized steering agent that updates itself every frame
 # so the user does not have to. All other specialized agents derive from this.
@@ -33,10 +33,10 @@ var angular_drag_percentage : float = 0.0
 var last_orientation : float = 0.0
 var applied_steering : bool = false
 
-func apply_steering(_acceleration : GSAITargetAcceleration, _delta : float) -> void:
+func apply_steering(_acceleration : GDGSAITargetAcceleration, _delta : float) -> void:
 	call("_apply_steering", _acceleration, _delta)
 
 # Moves the agent's body by target `acceleration`.
 # @tags - virtual
-func _apply_steering(_acceleration : GSAITargetAcceleration, _delta : float) -> void:
+func _apply_steering(_acceleration : GDGSAITargetAcceleration, _delta : float) -> void:
 	pass

@@ -1,5 +1,5 @@
 extends Reference
-class_name GSAISteeringBehavior
+class_name GDGSAISteeringBehavior
 
 # Base class for all steering behaviors.
 #
@@ -13,14 +13,14 @@ class_name GSAISteeringBehavior
 # If `false`, all calculations return zero amounts of acceleration.
 var is_enabled : bool = true
 # The AI agent on which the steering behavior bases its calculations.
-var agent : GSAISteeringAgent
+var agent : GDGSAISteeringAgent
 
 # Sets the `acceleration` with the behavior's desired amount of acceleration.
-func calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func calculate_steering(acceleration: GDGSAITargetAcceleration) -> void:
 	if is_enabled:
 		call("_calculate_steering", acceleration)
 	else:
 		acceleration.set_zero()
 
-func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration: GDGSAITargetAcceleration) -> void:
 	acceleration.set_zero()

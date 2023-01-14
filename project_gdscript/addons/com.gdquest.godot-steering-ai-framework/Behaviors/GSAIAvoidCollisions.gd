@@ -1,18 +1,18 @@
-class_name GSAIAvoidCollisions
-extends GSAIGroupBehavior
+class_name GDGSAIAvoidCollisions
+extends GDGSAIGroupBehavior
 
 # Steers the agent to avoid obstacles in its path. Approximates obstacles as
 # spheres.
 # @category - Group behaviors
 
-var _first_neighbor: GSAISteeringAgent
+var _first_neighbor: GDGSAISteeringAgent
 var _shortest_time : float = 0.0
 var _first_minimum_separation : float = 0.0
 var _first_distance : float = 0.0
 var _first_relative_position : Vector3
 var _first_relative_velocity : Vector3
 
-func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration: GDGSAITargetAcceleration) -> void:
 	_shortest_time = INF
 	_first_neighbor = null
 	_first_minimum_separation = 0
@@ -35,7 +35,7 @@ func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
 # Callback for the proximity to call when finding neighbors. Keeps track of every `neighbor`
 # that was found but only keeps the one the owning agent will most likely collide with.
 # @tags - virtual
-func _report_neighbor(neighbor: GSAISteeringAgent) -> bool:
+func _report_neighbor(neighbor: GDGSAISteeringAgent) -> bool:
 	var relative_position : Vector3 = neighbor.position - agent.position
 	var relative_velocity : Vector3 = neighbor.linear_velocity - agent.linear_velocity
 	var relative_speed_squared : float = relative_velocity.length_squared()

@@ -1,5 +1,5 @@
-class_name GSAIMatchOrientation
-extends GSAISteeringBehavior
+class_name GDGSAIMatchOrientation
+extends GDGSAISteeringBehavior
 
 # Calculates an angular acceleration to match an agent's orientation to that of
 # its target. Attempts to make the agent arrive with zero remaining angular
@@ -7,7 +7,7 @@ extends GSAISteeringBehavior
 # @category - Individual behaviors
 
 # The target orientation for the behavior to try and match rotations to.
-var target : GSAIAgentLocation
+var target : GDGSAIAgentLocation
 # The amount of distance in radians for the behavior to consider itself close
 # enough to be matching the target agent's rotation.
 var alignment_tolerance : float = 0.0
@@ -19,10 +19,10 @@ var time_to_reach : float = 0.1
 # determining angles. X and Z should be used in 3D.
 var use_z : bool = false
 
-func match_orientation(acceleration: GSAITargetAcceleration, desired_orientation: float) -> void:
+func match_orientation(acceleration: GDGSAITargetAcceleration, desired_orientation: float) -> void:
 	call("_match_orientation", acceleration, desired_orientation)
 
-func _match_orientation(acceleration: GSAITargetAcceleration, desired_orientation: float) -> void:
+func _match_orientation(acceleration: GDGSAITargetAcceleration, desired_orientation: float) -> void:
 	var rotation : float = wrapf(desired_orientation - agent.orientation, -PI, PI)
 
 	var rotation_size : float = abs(rotation)
@@ -46,5 +46,5 @@ func _match_orientation(acceleration: GSAITargetAcceleration, desired_orientatio
 	acceleration.linear = Vector3.ZERO
 
 
-func _calculate_steering(acceleration: GSAITargetAcceleration) -> void:
+func _calculate_steering(acceleration: GDGSAITargetAcceleration) -> void:
 	match_orientation(acceleration, target.orientation)
