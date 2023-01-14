@@ -13,38 +13,8 @@ _global_script_classes=[ {
 "class": @"DemoPickerUI",
 "language": @"GDScript",
 "path": "res://Demos/DemoPickerUI.gd"
-}, {
-"base": "GSAISpecializedAgent",
-"class": @"GSAIKinematicBody2DAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAIKinematicBody2DAgent.gd"
-}, {
-"base": "GSAISpecializedAgent",
-"class": @"GSAIKinematicBody3DAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAIKinematicBody3DAgent.gd"
-}, {
-"base": "GSAISpecializedAgent",
-"class": @"GSAIRigidBody2DAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAIRigidBody2DAgent.gd"
-}, {
-"base": "GSAISpecializedAgent",
-"class": @"GSAIRigidBody3DAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAIRigidBody3DAgent.gd"
-}, {
-"base": "GSAISteeringAgent",
-"class": @"GSAISpecializedAgent",
-"language": @"GDScript",
-"path": "res://addons/com.gdquest.godot-steering-ai-framework/Agents/GSAISpecializedAgent.gd"
 } ]
 _global_script_class_icons={
-@"GSAIKinematicBody2DAgent": "",
-@"GSAIKinematicBody3DAgent": "",
-@"GSAIRigidBody2DAgent": "",
-@"GSAIRigidBody3DAgent": "",
-@"GSAISpecializedAgent": "",
 @"DemoPickerUI": ""
 }
 
